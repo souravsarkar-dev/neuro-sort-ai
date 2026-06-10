@@ -419,45 +419,6 @@ function renderStorageBreakdown(stats) {
     }
 }
 
-    // Display stack top to bottom (linked list visualizer)
-    const listContainer = document.createElement('div');
-    listContainer.style.display = 'flex';
-    listContainer.style.flexDirection = 'column';
-    listContainer.style.gap = '8px';
-
-    const renderList = [...stack].reverse(); // stack pops from the end (top)
-
-    renderList.forEach((op, idx) => {
-        const item = document.createElement('div');
-        item.className = 'glass-card';
-        item.style.padding = '0.75rem 1.25rem';
-        item.style.display = 'flex';
-        item.style.justify = 'space-between';
-        item.style.alignItems = 'center';
-        
-        if (idx === 0) {
-            item.style.borderColor = 'var(--accent-cyan)';
-            item.style.background = 'rgba(6,182,212,0.05)';
-        }
-
-        item.innerHTML = `
-            <div>
-                <span style="font-weight:600;color:${idx === 0 ? 'var(--accent-cyan)' : 'var(--text-primary)'};">
-                    ${idx === 0 ? '🔝 [STACK TOP]' : '🔗 [LINKED LIST]'}
-                </span>
-                <span style="margin-left:8px;font-family:var(--font-mono);font-size:0.85rem;">
-                    Moved <code>${op.filename}</code>
-                </span>
-            </div>
-            <button class="btn btn-sm btn-primary" style="padding:4px 10px;font-size:0.75rem;" onclick="triggerUndo('${op.filename}')">
-                Undo
-            </button>
-        `;
-        listContainer.appendChild(item);
-    });
-
-    container.appendChild(listContainer);
-}
 
 // 8. RENDER SYLLABUS ACCORDION
 function renderSyllabusAccordion(mapping) {
