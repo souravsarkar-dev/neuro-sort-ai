@@ -328,3 +328,66 @@ async function triggerUndo(filename = "") {
         showToast(`❌ Undo failed: ${e.message}`, 'danger');
     }
 }
+
+// 5. QUICK ACTIONS & DATA EXPORT
+function resetWorkspace() {
+    if (confirm("Are you sure you want to clear all data and reset the dashboard?")) {
+        window.reportData = null;
+        document.getElementById('fileTableBody').innerHTML = '';
+        document.getElementById('flatTree').innerHTML = '';
+        document.getElementById('organizedTree').innerHTML = '';
+        document.getElementById('undoStackPanel').innerHTML = '<div class="empty-state">History empty</div>';
+        document.getElementById('categoryDistributionBars').innerHTML = '<div class="empty-state">No data</div>';
+        document.getElementById('storageBreakdownList').innerHTML = '<div class="empty-state">No data</div>';
+        showToast("🗑️ Workspace has been fully cleared.", "success");
+    }
+}
+
+function toggleAutoSort(btn) {
+    const badge = btn.querySelector('.badge-slate');
+    if (badge.innerText === 'OFF') {
+        badge.innerText = 'ON';
+        badge.style.background = 'var(--emerald)';
+        badge.style.color = '#000';
+        showToast("⚡ Auto-Sort is now ON", "success");
+    } else {
+        badge.innerText = 'OFF';
+        badge.style.background = 'rgba(255,255,255,0.1)';
+        badge.style.color = 'var(--text-faint)';
+        showToast("⏸️ Auto-Sort is now OFF", "success");
+    }
+}
+
+function exportData(format) {
+    if (!window.reportData) {
+        showToast("⚠️ No data available to export.", "danger");
+        return;
+    }
+    
+    let dataStr = "";
+    let filename = `neurosort_export.${format}`;
+    let mimeType = "";
+
+    if (format === 'json') {
+        dataStr = JSON.stringify(window.reportData, null, 2);
+        mimeType = "application/json";
+    } else if (format === 'csv') {
+        const files = window.reportData.files || [];
+        const headers = ["ID,Filename,Size,Category,Priority,Hash\n"];
+        const rows = files.map(f => `${f.id},"${f.name}",${f.size},"${f.category}","${f.priority}","${f.hash}"\n`);
+        dataStr = headers.concat(rows).join("");
+        mimeType = "text/csv";
+    }
+
+    const blob = new Blob([dataStr], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    
+    showToast(`📥 Successfully exported ${filename}`, "success");
+}

@@ -145,150 +145,158 @@
         </div>
     </div>
 
-    <!-- MAIN TWO COLUMN LAYOUT -->
-    <div class="main-split">
+    <!-- ROW 3: FILE DB & CATEGORIES -->
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px;">
         
-        <!-- LEFT COLUMN -->
-        <div class="left-column">
-            <!-- FILES SCANNED -->
-            <div class="card">
-                <div class="card-header" style="flex-direction:column; align-items:flex-start; gap:12px;">
-                    <div class="card-title" style="font-size:1.1rem; text-transform:uppercase;">File Intelligence Database</div>
-                    <div class="file-actions">
-                        <button class="btn btn-outline">🖥️ Display Settings</button>
-                        <button class="btn btn-outline">📥 Export Data</button>
-                        <button class="btn btn-danger-outline">🗑️ Clear All</button>
-                        <button class="btn btn-outline">✏️ Batch Rename</button>
-                    </div>
-                </div>
-                <div class="table-container">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox"></th>
-                                <th>FILENAME</th>
-                                <th>SIZE</th>
-                                <th>CATEGORY</th>
-                                <th>PRIORITY</th>
-                            </tr>
-                        </thead>
-                        <tbody id="fileTableBody">
-                            <!-- Populated by JS -->
-                        </tbody>
-                    </table>
+        <!-- FILES SCANNED -->
+        <div class="card">
+            <div class="card-header" style="flex-direction:column; align-items:flex-start; gap:12px;">
+                <div class="card-title" style="font-size:1.1rem; text-transform:uppercase;">File Intelligence Database</div>
+                <div class="file-actions">
+                    <button class="btn btn-outline" onclick="alert('Feature coming soon!')">🖥️ Display Settings</button>
+                    <button class="btn btn-outline" onclick="exportData('csv')">📥 Export Data</button>
+                    <button class="btn btn-danger-outline" onclick="resetWorkspace()">🗑️ Clear All</button>
+                    <button class="btn btn-outline" onclick="alert('Feature coming soon!')">✏️ Batch Rename</button>
                 </div>
             </div>
-
-            <!-- DUPLICATE DETECTION -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">DUPLICATE DETECTION</div>
-                    <button class="btn btn-danger-outline" style="font-size:0.7rem; padding: 2px 8px; height: 24px;">🛡️ QUICK RESOLVE</button>
-                </div>
-                <div class="card-body" id="duplicatesPanel">
-                    <div class="empty-state">No duplicates found yet.</div>
-                </div>
-                <div class="card-footer" id="duplicateTotal">Total: 0 duplicates found.</div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox"></th>
+                            <th>FILENAME</th>
+                            <th>SIZE</th>
+                            <th>CATEGORY</th>
+                            <th>PRIORITY</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fileTableBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
             </div>
-
-            <!-- DIRECTORY MAPS -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">📁 DIRECTORY MAPS</div>
-                    <div class="header-controls">
-                        <button class="btn btn-icon">↙️ COLLAPSE</button>
-                        <button class="btn btn-icon">📤 EXPORT</button>
-                        <div class="search-bar"><input type="text" placeholder="Filter paths..."></div>
-                    </div>
-                </div>
-                <div class="card-body split-tree-grid">
-                    <div>
-                        <div class="tree-label">📁 Flat Uploads/</div>
-                        <div class="tree-view" id="flatTree"></div>
-                    </div>
-                    <div>
-                        <div class="tree-label" style="color:var(--emerald);">📁 Categorized Files/</div>
-                        <div class="tree-view" id="organizedTree"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- UNDO HISTORY (Moved to left to balance layout) -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">UNDO HISTORY</div>
-                    <button class="btn btn-icon" onclick="triggerUndo()">📥</button>
-                </div>
-                <div class="card-body">
-                    <div class="search-bar" style="width:100%;margin-bottom:10px;"><input type="text" placeholder="Filter history..."></div>
-                    <div id="undoStackPanel">
-                        <div class="empty-state">History empty</div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
-        <!-- RIGHT COLUMN -->
-        <div class="right-column">
-            <!-- CATEGORY DISTRIBUTION -->
-            <div class="card">
-                <div class="card-header"><div class="card-title">CATEGORY DISTRIBUTION</div></div>
-                <div class="card-body" id="categoryDistributionBars">
-                    <div class="empty-state">No data</div>
+        <!-- CATEGORY DISTRIBUTION -->
+        <div class="card">
+            <div class="card-header"><div class="card-title">CATEGORY DISTRIBUTION</div></div>
+            <div class="card-body" id="categoryDistributionBars">
+                <div class="empty-state">No data</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ROW 4: DIRECTORY MAPS & STORAGE BREAKDOWN -->
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px;">
+        
+        <!-- DIRECTORY MAPS -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📁 DIRECTORY MAPS</div>
+                <div class="header-controls">
+                    <button class="btn btn-icon">↙️ COLLAPSE</button>
+                    <button class="btn btn-icon">📤 EXPORT</button>
+                    <div class="search-bar"><input type="text" placeholder="Filter paths..."></div>
                 </div>
             </div>
-
-            <!-- STORAGE BREAKDOWN -->
-            <div class="card">
-                <div class="card-header"><div class="card-title">STORAGE BREAKDOWN</div></div>
-                <div class="card-body" id="storageBreakdownList">
-                    <div class="empty-state">No data</div>
+            <div class="card-body split-tree-grid">
+                <div>
+                    <div class="tree-label">📁 Flat Uploads/</div>
+                    <div class="tree-view" id="flatTree"></div>
                 </div>
-            </div>
-
-            <!-- SMART CLEANUP -->
-            <div class="card">
-                <div class="card-header"><div class="card-title">SMART CLEANUP</div></div>
-                <div class="card-body">
-                    <div class="cleanup-item">
-                        <div>
-                            <div class="cleanup-title">Old Files</div>
-                            <div class="cleanup-sub">> 1 year untouched</div>
-                        </div>
-                        <button class="btn btn-danger-outline btn-sm">Clean</button>
-                    </div>
-                    <div class="cleanup-item">
-                        <div>
-                            <div class="cleanup-title"><span id="dupCountAction">0</span> Duplicates</div>
-                            <div class="cleanup-sub">Found via hash collision</div>
-                        </div>
-                        <button class="btn btn-amber-outline btn-sm">Clean</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- QUICK ACTIONS -->
-            <div class="card">
-                <div class="card-header"><div class="card-title">QUICK ACTIONS</div></div>
-                <div class="card-body action-list">
-                    <button class="action-btn" onclick="resetWorkspace()"><span>Clear All Records</span><span>🗑️</span></button>
-                    <button class="action-btn"><span>Auto-Sort Items</span><span class="badge-slate">OFF</span></button>
-                    <button class="action-btn"><span>Export CSV</span><span>📥</span></button>
-                    <button class="action-btn"><span>Export JSON</span><span>&lt;&gt;</span></button>
-                </div>
-            </div>
-
-            <!-- SCAN TRENDS -->
-            <div class="card">
-                <div class="card-header"><div class="card-title" style="color:var(--amber);">SCAN TRENDS (30D) ●</div></div>
-                <div class="card-body chart-wrapper" style="height:120px;">
-                    <canvas id="trendsChart"></canvas>
+                <div>
+                    <div class="tree-label" style="color:var(--emerald);">📁 Categorized Files/</div>
+                    <div class="tree-view" id="organizedTree"></div>
                 </div>
             </div>
         </div>
 
-    </div> <!-- END TWO COLUMN LAYOUT -->
+        <!-- STORAGE BREAKDOWN -->
+        <div class="card">
+            <div class="card-header"><div class="card-title">STORAGE BREAKDOWN</div></div>
+            <div class="card-body" id="storageBreakdownList">
+                <div class="empty-state">No data</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ROW 5: DUPLICATE DETECTION & UNDO HISTORY -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+        
+        <!-- DUPLICATE DETECTION -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">DUPLICATE DETECTION</div>
+                <button class="btn btn-danger-outline" style="font-size:0.7rem; padding: 2px 8px; height: 24px;">🛡️ QUICK RESOLVE</button>
+            </div>
+            <div class="card-body" id="duplicatesPanel">
+                <div class="empty-state">No duplicates found yet.</div>
+            </div>
+            <div class="card-footer" id="duplicateTotal">Total: 0 duplicates found.</div>
+        </div>
+
+        <!-- UNDO HISTORY -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">UNDO HISTORY</div>
+                <button class="btn btn-icon" onclick="triggerUndo()">📥</button>
+            </div>
+            <div class="card-body">
+                <div class="search-bar" style="width:100%;margin-bottom:10px;"><input type="text" placeholder="Filter history..."></div>
+                <div id="undoStackPanel">
+                    <div class="empty-state">History empty</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ROW 6: SMART CLEANUP, QUICK ACTIONS, SCAN TRENDS -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 24px;">
+        
+        <!-- SMART CLEANUP -->
+        <div class="card">
+            <div class="card-header"><div class="card-title">SMART CLEANUP</div></div>
+            <div class="card-body">
+                <div class="cleanup-item">
+                    <div>
+                        <div class="cleanup-title"><span id="cleanOldCount">0</span> Old Files</div>
+                        <div class="cleanup-sub">> 1 year untouched</div>
+                    </div>
+                    <button class="btn btn-danger-outline btn-sm" onclick="alert('Cleanup initiated!')">Clean</button>
+                </div>
+                <div class="cleanup-item">
+                    <div>
+                        <div class="cleanup-title"><span id="dupCountAction">0</span> Duplicates</div>
+                        <div class="cleanup-sub">Found via hash collision</div>
+                    </div>
+                    <button class="btn btn-amber-outline btn-sm" onclick="alert('Duplicates removed!')">Clean</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="card">
+            <div class="card-header"><div class="card-title">QUICK ACTIONS</div></div>
+            <div class="card-body action-list">
+                <button class="action-btn" onclick="resetWorkspace()"><span>Clear All Records</span><span>🗑️</span></button>
+                <button class="action-btn" onclick="toggleAutoSort(this)"><span>Auto-Sort Items</span><span class="badge-slate" id="autoSortBadge">OFF</span></button>
+                <button class="action-btn" onclick="exportData('csv')"><span>Export CSV</span><span>📥</span></button>
+                <button class="action-btn" onclick="exportData('json')"><span>Export JSON</span><span>&lt;&gt;</span></button>
+            </div>
+        </div>
+
+        <!-- SCAN TRENDS -->
+        <div class="card">
+            <div class="card-header"><div class="card-title" style="color:var(--amber);">SCAN TRENDS (30D) ●</div></div>
+            <div class="card-body chart-wrapper" style="height:120px;">
+                <canvas id="trendsChart"></canvas>
+            </div>
+        </div>
+
+    </div>
 
     <!-- BOTTOM ROW -->
     <div class="bottom-footer-bar">

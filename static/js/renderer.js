@@ -21,6 +21,21 @@ function renderDashboard(report) {
     renderUndoStack(report.undoStack);
     renderSyllabusAccordion(report.syllabusMapping);
     renderEthicsPanel(report.statistics);
+    renderSmartCleanup(report);
+}
+
+// 0. SMART CLEANUP COUNTS
+function renderSmartCleanup(report) {
+    const dupCountSpan = document.getElementById('dupCountAction');
+    if (dupCountSpan && report.duplicates) {
+        dupCountSpan.textContent = report.duplicates.length;
+    }
+    const cleanOldCount = document.getElementById('cleanOldCount');
+    if (cleanOldCount && report.files) {
+        // mock old files logic based on total files
+        const oldFiles = Math.floor(report.files.length * 0.15); 
+        cleanOldCount.textContent = oldFiles;
+    }
 }
 
 // 1. RENDER STATISTICS CARDS
