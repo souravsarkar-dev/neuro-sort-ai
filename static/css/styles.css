@@ -231,7 +231,7 @@ input:checked + .slider:before { transform: translateX(16px); }
 .left-column, .right-column { display: flex; flex-direction: column; gap: 24px; }
 
 /* ── TABLES ── */
-.table-container { overflow-x: auto; }
+.table-container { overflow-x: auto; max-height: 350px; overflow-y: auto; border-bottom: 1px solid var(--border-base); }
 .data-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; }
 .data-table th { padding: 12px 16px; font-size: 0.7rem; color: var(--text-faint); font-weight: 700; letter-spacing: 0.05em; border-bottom: 1px solid var(--border-base); }
 .data-table td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.02); }
@@ -267,6 +267,9 @@ input:checked + .slider:before { transform: translateX(16px); }
 .cleanup-title { font-size: 0.85rem; font-weight: 600; }
 .cleanup-sub { font-size: 0.7rem; color: var(--text-faint); }
 
+/* ── UNDO HISTORY SCROLL ── */
+#undoStackPanel { max-height: 250px; overflow-y: auto; padding-right: 8px; }
+
 /* ── QUICK ACTIONS ── */
 .action-list { display: flex; flex-direction: column; gap: 8px; }
 .action-btn {
@@ -279,8 +282,8 @@ input:checked + .slider:before { transform: translateX(16px); }
 .action-btn:hover { background: var(--bg-hover); }
 
 /* ── DIRECTORY MAPS ── */
-.split-tree-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.tree-label { font-size: 0.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
+.split-tree-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-height: 400px; overflow-y: auto; }
+.tree-label { font-size: 0.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; position: sticky; top: 0; background: var(--bg-card); z-index: 10; padding-bottom: 8px; border-bottom: 1px solid var(--border-base); }
 .tree-view { font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.8; color: var(--text-muted); }
 .tree-node { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
 .tree-indent { margin-left: 20px; border-left: 1px solid var(--border-subtle); padding-left: 12px; }
