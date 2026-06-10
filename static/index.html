@@ -131,15 +131,10 @@
             <div class="card-body chart-wrapper"><canvas id="weightChart"></canvas></div>
         </div>
         <div class="card">
-            <div class="card-header"><div class="card-title">SORTING PERFORMANCE (N=12)</div></div>
+            <div class="card-header"><div class="card-title" id="sortingPerformanceTitle">SORTING PERFORMANCE</div></div>
             <div class="card-body">
-                <div class="algo-list">
-                    <div class="algo-row"><span>Bubble Sort</span><span class="algo-time">0.01 ms</span><span class="badge-slate">O(n²)</span></div>
-                    <div class="algo-row"><span>Selection Sort</span><span class="algo-time">0.01 ms</span><span class="badge-slate">O(n²)</span></div>
-                    <div class="algo-row"><span>Insertion Sort</span><span class="algo-time">0.01 ms</span><span class="badge-slate">O(n²)</span></div>
-                    <div class="algo-row"><span>Quick Sort</span><span class="algo-time highlight">0.01 ms</span><span class="badge-slate">O(n log n)</span></div>
-                    <div class="algo-row"><span>Merge Sort</span><span class="algo-time highlight">0.01 ms</span><span class="badge-slate">O(n log n)</span></div>
-                    <div class="algo-row"><span>Radix Sort</span><span class="algo-time">0.01 ms</span><span class="badge-slate">O(nk)</span></div>
+                <div class="algo-list" id="sortingPerformanceList">
+                    <div class="empty-state">No data</div>
                 </div>
             </div>
         </div>

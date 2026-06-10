@@ -22,6 +22,7 @@ function renderDashboard(report) {
     renderSyllabusAccordion(report.syllabusMapping);
     renderEthicsPanel(report.statistics);
     renderSmartCleanup(report);
+    renderSortingPerformance(report);
 }
 
 // 0. SMART CLEANUP COUNTS
@@ -36,6 +37,36 @@ function renderSmartCleanup(report) {
         const oldFiles = Math.floor(report.files.length * 0.15); 
         cleanOldCount.textContent = oldFiles;
     }
+}
+
+// 0b. SORTING PERFORMANCE
+function renderSortingPerformance(report) {
+    const title = document.getElementById('sortingPerformanceTitle');
+    const list = document.getElementById('sortingPerformanceList');
+    
+    if (!list || !report.sortBenchmark) return;
+    
+    if (title && report.files) {
+        title.innerText = `SORTING PERFORMANCE (N=${report.files.length})`;
+    }
+    
+    list.innerHTML = '';
+    report.sortBenchmark.forEach(algo => {
+        const div = document.createElement('div');
+        div.className = 'algo-row';
+        
+        let timeClass = 'algo-time';
+        if (algo.selected || algo.timeMs <= 0.02) {
+            timeClass += ' highlight';
+        }
+        
+        div.innerHTML = `
+            <span>${algo.name}</span>
+            <span class="${timeClass}">${algo.timeMs.toFixed(3)} ms</span>
+            <span class="badge-slate">${algo.complexity}</span>
+        `;
+        list.appendChild(div);
+    });
 }
 
 // 1. RENDER STATISTICS CARDS
