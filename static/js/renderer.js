@@ -323,7 +323,10 @@ function renderUndoStack(stack) {
         return;
     }
 
-    stack.forEach(op => {
+    stack.forEach((op, idx) => {
+        // limit to last 10 for UI cleanliness
+        if (idx >= 10) return;
+        
         const div = document.createElement('div');
         div.style.padding = '10px';
         div.style.background = 'rgba(255,255,255,0.02)';
@@ -331,8 +334,14 @@ function renderUndoStack(stack) {
         div.style.marginBottom = '8px';
         div.style.fontSize = '0.8rem';
         div.innerHTML = `
-            <div style="font-weight:600; color:var(--text-primary); margin-bottom:4px;">Finished Processing. Processed...</div>
-            <div style="color:var(--text-faint); font-family:var(--font-mono);">${new Date(op.timestamp).toLocaleTimeString()} • ${op.filesProcessed} items</div>
+            <div style="font-weight:600; color:var(--text-primary); margin-bottom:4px; display:flex; justify-content:space-between;">
+                <span><span style="color:var(--emerald);">[MOVE]</span> ${op.filename}</span>
+                <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-faint);">${new Date(op.timestamp * 1000).toLocaleTimeString()}</span>
+            </div>
+            <div style="color:var(--text-faint); font-family:var(--font-mono); font-size:0.7rem; display:flex; justify-content:space-between; align-items:center;">
+                <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:80%;">${op.destination}</span>
+                <button class="btn btn-icon" style="padding:2px 6px; font-size:0.7rem;" onclick="triggerUndo('${op.filename}')">↺ Undo</button>
+            </div>
         `;
         container.appendChild(div);
     });

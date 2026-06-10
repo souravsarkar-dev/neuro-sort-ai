@@ -103,8 +103,10 @@ function generateDemoReport() {
 
     // Categories statistics
     const catCounts = {};
+    const catSizes = {};
     files.forEach(f => {
         catCounts[f.category] = (catCounts[f.category] || 0) + 1;
+        catSizes[f.category] = (catSizes[f.category] || 0) + f.size;
     });
 
     const categories = [
@@ -200,7 +202,9 @@ function generateDemoReport() {
         lowPriority: files.filter(f => f.priority === "Low").length,
         rulesApplied: files.length - 1, // Exclude Others catchall
         processingTimeMs: 0.010,
-        sortAlgorithm: "Radix Sort"
+        sortAlgorithm: "Radix Sort",
+        categoryCounts: catCounts,
+        categorySizes: catSizes
     };
 
     return {

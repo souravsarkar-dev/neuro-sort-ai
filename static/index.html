@@ -212,6 +212,21 @@
                     </div>
                 </div>
             </div>
+
+            <!-- UNDO HISTORY (Moved to left to balance layout) -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">UNDO HISTORY</div>
+                    <button class="btn btn-icon" onclick="triggerUndo()">📥</button>
+                </div>
+                <div class="card-body">
+                    <div class="search-bar" style="width:100%;margin-bottom:10px;"><input type="text" placeholder="Filter history..."></div>
+                    <div id="undoStackPanel">
+                        <div class="empty-state">History empty</div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- RIGHT COLUMN -->
@@ -229,20 +244,6 @@
                 <div class="card-header"><div class="card-title">STORAGE BREAKDOWN</div></div>
                 <div class="card-body" id="storageBreakdownList">
                     <div class="empty-state">No data</div>
-                </div>
-            </div>
-
-            <!-- UNDO HISTORY -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">UNDO HISTORY</div>
-                    <button class="btn btn-icon" onclick="triggerUndo()">📥</button>
-                </div>
-                <div class="card-body">
-                    <div class="search-bar" style="width:100%;margin-bottom:10px;"><input type="text" placeholder="Filter history..."></div>
-                    <div id="undoStackPanel">
-                        <div class="empty-state">History empty</div>
-                    </div>
                 </div>
             </div>
 
