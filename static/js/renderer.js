@@ -12,6 +12,9 @@ function renderDashboard(report) {
     renderStats(report.statistics);
     renderBeforeAfter(report.files);
     renderCharts(report);
+    renderCategoryDistribution(report.statistics);
+    renderStorageBreakdown(report.statistics);
+    renderFolderTree(report.folderStructure);
     renderFolderTree(report.folderStructure);
     renderFileTable(report.files);
     renderDuplicates(report.duplicates);
@@ -29,65 +32,37 @@ function renderStats(stats) {
         return b + ' B';
     };
 
-    document.getElementById('statTotalFiles').innerText = stats.totalFiles || 0;
-    document.getElementById('statCategories').innerText = stats.categoriesCreated || 0;
-    document.getElementById('statDuplicates').innerText = stats.duplicatesFound || 0;
-    document.getElementById('statSpaceSaved').innerText = formatBytes(stats.spaceSaved || 0);
-    document.getElementById('statAlgorithm').innerText = stats.sortAlgorithm || 'None';
-    document.getElementById('statTime').innerText = `${(stats.processingTimeMs || 0).toFixed(3)} ms`;
+    const totalEl = document.getElementById('stat-total');
+    if (totalEl) totalEl.innerText = stats.totalFiles || 0;
+    
+    const catEl = document.getElementById('stat-categories');
+    if (catEl) catEl.innerText = stats.categoriesCreated || 0;
+    
+    const dupEl = document.getElementById('stat-duplicates');
+    if (dupEl) dupEl.innerText = stats.duplicatesFound || 0;
+    
+    const spaceEl = document.getElementById('stat-space');
+    if (spaceEl) spaceEl.innerText = formatBytes(stats.spaceSaved || 0);
+    
+    const timeEl = document.getElementById('stat-time');
+    if (timeEl) timeEl.innerText = `${(stats.processingTimeMs || 0).toFixed(3)} ms`;
 }
 
 // 2. RENDER BEFORE/AFTER COMPARISON
 function renderBeforeAfter(files) {
-    const beforeContainer = document.getElementById('beforeList');
-    const afterContainer = document.getElementById('afterList');
+    const beforeContainer = document.getElementById('flatTree');
 
-    if (!beforeContainer || !afterContainer) return;
+    if (!beforeContainer) return;
 
     beforeContainer.innerHTML = '';
-    afterContainer.innerHTML = '';
 
     // Before: messy flat list of files
     files.forEach(f => {
         const item = document.createElement('div');
-        item.className = 'tree-item flat';
-        item.innerHTML = `<span class="icon">📄</span> <span class="name">${f.name}</span> <span class="size">${f.sizeFormatted}</span>`;
+        item.className = 'tree-node';
+        item.innerHTML = `<span class="icon" style="margin-right:8px;font-size:1rem;">${getFileIcon(f.name)}</span> <span class="name" style="margin-right:12px;color:var(--text-primary);">${f.name}</span> <span class="size" style="font-size:0.7rem;color:var(--text-faint);">${f.sizeFormatted}</span>`;
         beforeContainer.appendChild(item);
     });
-
-    // After: categorized mock folders
-    const categories = {};
-    files.forEach(f => {
-        if (!categories[f.category]) {
-            categories[f.category] = [];
-        }
-        categories[f.category].push(f);
-    });
-
-    for (const [catName, catFiles] of Object.entries(categories)) {
-        const folder = document.createElement('div');
-        folder.className = 'tree-folder';
-        folder.innerHTML = `
-            <div class="folder-header collapsed" onclick="toggleFolder(this)">
-                <span class="arrow">▶</span> <span class="icon">📁</span> <span class="name">${catName}</span> <span class="badge">${catFiles.length}</span>
-            </div>
-            <div class="folder-content hidden"></div>
-        `;
-        const content = folder.querySelector('.folder-content');
-
-        catFiles.forEach(f => {
-            const fileItem = document.createElement('div');
-            fileItem.className = `tree-item ${f.priority.toLowerCase()}`;
-            fileItem.onclick = () => showFileDetail(f);
-            fileItem.innerHTML = `
-                <span class="icon">📄</span> <span class="name">${f.name}</span>
-                <span class="priority-badge ${f.priority.toLowerCase()}">${f.priority}</span>
-            `;
-            content.appendChild(fileItem);
-        });
-
-        afterContainer.appendChild(folder);
-    }
 }
 
 // 3. RENDER ORGANIZED FOLDER TREE
@@ -261,15 +236,34 @@ function renderFileTable(files) {
         const tr = document.createElement('tr');
         tr.style.cursor = 'pointer';
         tr.onclick = () => showFileDetail(f);
+        
+        let priorityColor = 'low';
+        if (f.priority === 'MED') priorityColor = 'amber';
+        if (f.priority === 'HIGH') priorityColor = 'rose';
+        
         tr.innerHTML = `
-            <td style="font-family:var(--font-mono);font-size:0.85rem;word-break:break-all;">${f.name}</td>
-            <td><span class="priority-badge ${f.priority.toLowerCase()}">${f.priority}</span></td>
-            <td style="color:var(--accent-cyan);font-weight:600;">${f.priorityScore}</td>
-            <td>📁 ${f.category}${f.subcategory ? ' / ' + f.subcategory : ''}</td>
-            <td style="font-size:0.85rem;color:var(--text-secondary);">${f.sizeFormatted}</td>
+            <td><input type="checkbox" onclick="event.stopPropagation()"></td>
+            <td style="font-weight:600; font-family:var(--font-mono); color:var(--text-primary);">
+                <span style="margin-right:8px; font-size:1.1rem;">${getFileIcon(f.name)}</span> ${f.name}
+            </td>
+            <td style="color:var(--text-secondary);">${f.sizeFormatted}</td>
+            <td><span class="badge badge-indigo">${f.category}</span></td>
+            <td><span class="badge badge-${priorityColor}">${f.priority}</span></td>
         `;
         container.appendChild(tr);
     });
+}
+
+function getFileIcon(filename) {
+    if (filename.endsWith('.pdf')) return '📄';
+    if (filename.endsWith('.jpg') || filename.endsWith('.png')) return '🖼️';
+    if (filename.endsWith('.xlsx')) return '📊';
+    if (filename.endsWith('.exe')) return '⚙️';
+    if (filename.endsWith('.c') || filename.endsWith('.py') || filename.endsWith('.css')) return '💻';
+    if (filename.endsWith('.mp4')) return '🎬';
+    if (filename.endsWith('.mp3')) return '🎵';
+    if (filename.endsWith('.zip')) return '📦';
+    return '📄';
 }
 
 // 6. RENDER DUPLICATE DETECTION CARDS
@@ -290,32 +284,22 @@ function renderDuplicates(duplicates) {
 
     duplicates.forEach(dup => {
         const groupCard = document.createElement('div');
-        groupCard.className = 'glass-card';
-        groupCard.style.padding = '1.25rem';
-        groupCard.style.marginBottom = '1rem';
+        groupCard.style.padding = '8px 0';
+        groupCard.style.borderBottom = '1px solid var(--border-base)';
         groupCard.innerHTML = `
-            <div style="display:flex;justify-content:space-between;margin-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:0.5rem;">
-                <span style="font-size:0.85rem;color:var(--accent-amber);">🔒 Content MD5: <code style="font-family:var(--font-mono);">${dup.hash}</code></span>
-                <span class="priority-badge low" style="background:rgba(244,63,94,0.15);color:#f43f5e;">⚠️ Wasted: ${(dup.wastedBytes/1024).toFixed(2)} KB</span>
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-primary);">${dup.files[0].name}</span>
+                <span style="font-size:0.75rem; color:var(--rose);">Hash: 0x${dup.hash.substring(0,4)}</span>
             </div>
         `;
         
-        dup.files.forEach((f, idx) => {
-            const fRow = document.createElement('div');
-            fRow.style.display = 'flex';
-            fRow.style.justify = 'space-between';
-            fRow.style.alignItems = 'center';
-            fRow.style.padding = '0.5rem 0';
-            fRow.style.fontSize = '0.9rem';
-            
-            fRow.innerHTML = `
-                <span style="word-break:break-all;">${idx === 0 ? '⭐ Original' : '📦 Copy'}: <code>${f.name}</code></span>
-                <button class="btn btn-sm btn-danger" style="padding:2px 8px;font-size:0.75rem;" onclick="event.stopPropagation(); deleteDuplicate('${f.name}')">
-                    ${idx === 0 ? 'Keep' : 'Delete'}
-                </button>
-            `;
-            groupCard.appendChild(fRow);
-        });
+        const dupTotalEl = document.getElementById('duplicateTotal');
+        if (dupTotalEl) dupTotalEl.innerText = `Total: ${duplicates.length} duplicates found.`;
+        
+        const dupCountAction = document.getElementById('dupCountAction');
+        if (dupCountAction) dupCountAction.innerText = duplicates.length;
+        
+
 
         container.appendChild(groupCard);
     });
@@ -325,7 +309,7 @@ function deleteDuplicate(filename) {
     showToast(`🗑️ Simulated removal of duplicate: ${filename}`);
 }
 
-// 7. RENDER UNDO STACK LINKED LIST VISUALIZATION
+// 8. RENDER UNDO STACK LINKED LIST VISUALIZATION
 function renderUndoStack(stack) {
     const container = document.getElementById('undoStackPanel');
     if (!container) return;
@@ -334,12 +318,106 @@ function renderUndoStack(stack) {
 
     if (!stack || stack.length === 0) {
         container.innerHTML = `
-            <div style="text-align:center;padding:2rem;color:var(--text-muted);">
-                📭 Undo Stack is currently empty.
-            </div>
+            <div class="empty-state">History empty</div>
         `;
         return;
     }
+
+    stack.forEach(op => {
+        const div = document.createElement('div');
+        div.style.padding = '10px';
+        div.style.background = 'rgba(255,255,255,0.02)';
+        div.style.borderRadius = '6px';
+        div.style.marginBottom = '8px';
+        div.style.fontSize = '0.8rem';
+        div.innerHTML = `
+            <div style="font-weight:600; color:var(--text-primary); margin-bottom:4px;">Finished Processing. Processed...</div>
+            <div style="color:var(--text-faint); font-family:var(--font-mono);">${new Date(op.timestamp).toLocaleTimeString()} • ${op.filesProcessed} items</div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+// 9. CATEGORY DISTRIBUTION
+function renderCategoryDistribution(stats) {
+    const container = document.getElementById('categoryDistributionBars');
+    if (!container || !stats || !stats.categoryCounts) return;
+    
+    container.innerHTML = '';
+    const total = stats.totalFiles || 1;
+    
+    const colors = {
+        'Documents': 'var(--indigo)',
+        'Code': 'var(--indigo)',
+        'Images': 'var(--emerald)',
+        'Spreadsheets': 'var(--emerald)',
+        'Programs': 'var(--cyan)',
+        'Videos': 'var(--rose)'
+    };
+    
+    for (const [cat, count] of Object.entries(stats.categoryCounts)) {
+        const pct = Math.round((count / total) * 100);
+        const color = colors[cat] || 'var(--indigo)';
+        
+        container.innerHTML += `
+            <div class="progress-item">
+                <div class="progress-header">
+                    <span>${cat}</span>
+                    <span style="color:${color}; font-family:var(--font-mono);">${pct}%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" style="width: ${pct}%; background: ${color};"></div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// 10. STORAGE BREAKDOWN
+function renderStorageBreakdown(stats) {
+    const container = document.getElementById('storageBreakdownList');
+    if (!container || !stats || !stats.categorySizes) return;
+    
+    container.innerHTML = '';
+    
+    const formatBytes = b => {
+        if (!b) return '0 B';
+        if (b >= 1048576) return (b / 1048576).toFixed(1) + 'MB';
+        if (b >= 1024) return (b / 1024).toFixed(0) + 'K';
+        return b + 'B';
+    };
+
+    const colors = {
+        'Documents': 'var(--indigo)',
+        'Code': 'var(--indigo)',
+        'Images': 'var(--emerald)'
+    };
+    
+    let rendered = 0;
+    for (const [cat, size] of Object.entries(stats.categorySizes)) {
+        if (size === 0) continue;
+        rendered++;
+        const color = colors[cat] || 'var(--cyan)';
+        const count = stats.categoryCounts[cat] || 0;
+        
+        container.innerHTML += `
+            <div class="storage-item">
+                <div class="storage-dot" style="border-color:${color};"></div>
+                <div class="storage-info">
+                    <div class="storage-title">${cat}</div>
+                </div>
+                <div class="storage-stats">
+                    <div class="storage-count">${count} items</div>
+                    <div class="storage-size">${formatBytes(size)}</div>
+                </div>
+            </div>
+        `;
+    }
+    
+    if (rendered === 0) {
+        container.innerHTML = '<div class="empty-state">No data</div>';
+    }
+}
 
     // Display stack top to bottom (linked list visualizer)
     const listContainer = document.createElement('div');
