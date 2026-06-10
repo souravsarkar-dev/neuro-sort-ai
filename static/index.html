@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeuroSort AI — Intelligent Academic File Organizer</title>
+    <meta name="description" content="AI-powered file organizer using AVL Trees, Expert Systems, BFS Scanner & MD5 Hash duplicate detection. JIS College of Engineering CSE B.Tech R25." />
+    <meta name="theme-color" content="#0A0C10" />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     APP SHELL
+     ════════════════════════════════════════ -->
+<div class="app-shell">
+
+    <!-- ═══════ SIDEBAR ═══════ -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-icon">🧠</div>
+            <span class="sidebar-logo-text">NeuroSort AI</span>
+            <span class="sidebar-logo-badge">v2.0</span>
+        </div>
+
+        <!-- INPUT -->
+        <div class="sidebar-section">
+            <p class="sidebar-section-label">Input</p>
+
+            <button class="sidebar-nav-item active" onclick="switchSidebarView('upload')">
+                <span class="nav-icon">📥</span>
+                <span>Upload Files</span>
+            </button>
+            <button class="sidebar-nav-item" onclick="switchSidebarView('scanner')">
+                <span class="nav-icon">📡</span>
+                <span>Folder Scanner</span>
+            </button>
+            <button class="sidebar-nav-item" onclick="switchSidebarView('demo')">
+                <span class="nav-icon">⚡</span>
+                <span>Demo Mode</span>
+                <span class="nav-badge">Auto</span>
+            </button>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div class="sidebar-section">
+            <p class="sidebar-section-label">Dashboard</p>
+
+            <a class="sidebar-nav-item" href="#section-overview">
+                <span class="nav-icon">📊</span>
+                <span>Overview</span>
+            </a>
+            <a class="sidebar-nav-item" href="#section-before-after">
+                <span class="nav-icon">🔀</span>
+                <span>Before / After</span>
+            </a>
+            <a class="sidebar-nav-item" href="#section-charts">
+                <span class="nav-icon">📈</span>
+                <span>Algorithm Charts</span>
+            </a>
+            <a class="sidebar-nav-item" href="#section-tree">
+                <span class="nav-icon">🌳</span>
+                <span>Folder Tree</span>
+            </a>
+            <a class="sidebar-nav-item" href="#section-files">
+                <span class="nav-icon">📋</span>
+                <span>File Database</span>
+            </a>
+            <a class="sidebar-nav-item" href="#section-duplicates">
+                <span class="nav-icon">♻️</span>
+                <span>Duplicates</span>
+            </a>
+            <a class="sidebar-nav-item" href="#section-undo">
+                <span class="nav-icon">↩️</span>
+                <span>Undo Stack</span>
+            </a>
+            <a class="sidebar-nav-item" href="#section-syllabus">
+                <span class="nav-icon">📖</span>
+                <span>Syllabus Map</span>
+            </a>
+            <a class="sidebar-nav-item" href="#section-ethics">
+                <span class="nav-icon">⚖️</span>
+                <span>AI Ethics</span>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="sidebar-footer">
+            <div class="sidebar-footer-info">
+                JIS College of Engineering<br/>
+                B.Tech CSE Reg. R25<br/>
+                <span style="color:var(--emerald);">CS202 / CS291 / CS292</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ═══════ MAIN CONTENT ═══════ -->
+    <div class="main-wrapper">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar-title">AI Intelligence Dashboard</div>
+            <div class="topbar-right">
+                <div class="topbar-status">
+                    <div class="status-dot"></div>
+                    AI Engine Online
+                </div>
+                <span class="topbar-meta">18 Rules Active</span>
+            </div>
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <div class="page-content">
+
+            <!-- ── INPUT CARD ── -->
+            <div class="input-panel" id="section-input">
+                <div class="input-tabs">
+                    <button class="input-tab active" data-tab="upload" onclick="switchInputTab('upload')">
+                        <span>📁</span> Upload Files
+                    </button>
+                    <button class="input-tab" data-tab="scanner" onclick="switchInputTab('scanner')">
+                        <span>📡</span> Folder Path
+                    </button>
+                    <button class="input-tab" data-tab="demo" onclick="switchInputTab('demo')">
+                        <span>⚡</span> Demo Mode
+                    </button>
+                </div>
+
+                <!-- Upload Tab -->
+                <div id="tab-upload" class="input-content active">
+                    <div class="info-note">
+                        <span>ℹ️</span>
+                        <span>Drop your files or entire folder. Supports JSON reports or any file type for direct browser-side AI classification.</span>
+                    </div>
+                    <label for="reportFile" class="upload-zone" id="dropZone">
+                        <div class="upload-icon-ring">📁</div>
+                        <p style="font-size:0.9rem;font-weight:600;color:var(--text-secondary);margin-bottom:8px;">
+                            Drop files or folder here, or click to browse
+                        </p>
+                        <p style="font-size:0.75rem;color:var(--text-faint);margin-bottom:12px;">
+                            JSON report files or any combination of files supported
+                        </p>
+                        <div style="display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;">
+                            <span class="badge badge-emerald">JSON Reports</span>
+                            <span class="badge badge-indigo">Any Files</span>
+                            <span class="badge badge-amber">Folders</span>
+                        </div>
+                        <input type="file" id="reportFile" multiple accept="*/*"
+                            style="display:none;" webkitdirectory multiple />
+                    </label>
+                </div>
+
+                <!-- Scanner Tab -->
+                <div id="tab-scanner" class="input-content">
+                    <div class="info-note">
+                        <span>📡</span>
+                        <span>Enter a local folder path to run the BFS Graph Scanner. Requires the backend server on <code style="color:var(--emerald);font-family:var(--font-mono);">localhost:5000</code>.</span>
+                    </div>
+                    <div class="scanner-controls">
+                        <div class="folder-input-wrapper">
+                            <span style="color:var(--text-faint);margin-right:8px;font-size:0.85rem;">📂</span>
+                            <input type="text" id="folderPath" placeholder="C:\Users\example\Documents\semester_files" />
+                        </div>
+                        <button class="btn btn-primary" onclick="handleFolderScan()" id="scanBtn">
+                            <span>📡</span> Scan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Demo Tab -->
+                <div id="tab-demo" class="input-content">
+                    <div class="demo-zone">
+                        <div style="font-size:3rem;margin-bottom:12px;">⚡</div>
+                        <p style="font-size:0.9rem;font-weight:600;color:var(--text-secondary);margin-bottom:6px;">Load Demo Workspace</p>
+                        <p style="font-size:0.78rem;color:var(--text-faint);margin-bottom:16px;max-width:360px;margin-inline:auto;">
+                            Instantly load a pre-built 27-file academic workspace that demonstrates all NeuroSort AI features.
+                        </p>
+                        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;">
+                            <span class="badge badge-emerald">27 Files</span>
+                            <span class="badge badge-indigo">6 Algorithms</span>
+                            <span class="badge badge-amber">18 AI Rules</span>
+                            <span class="badge badge-rose">AVL Trees</span>
+                        </div>
+                        <button class="btn btn-emerald btn-lg" onclick="loadDemoData()">⚡ Load Demo Workspace</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── STATS GRID ── -->
+            <div id="section-overview">
+                <div class="section-label">Overview Statistics</div>
+                <div class="stats-grid">
+                    <div class="stat-card" style="--stat-color:var(--emerald);--stat-dim:rgba(52,211,153,0.08);--stat-border:rgba(52,211,153,0.2);">
+                        <div class="stat-icon" style="--stat-dim:rgba(52,211,153,0.08);--stat-border:rgba(52,211,153,0.2);">📄</div>
+                        <div class="stat-header">Total Files</div>
+                        <div class="stat-value" id="statTotalFiles">0</div>
+                    </div>
+                    <div class="stat-card" style="--stat-color:var(--indigo);--stat-dim:rgba(99,102,241,0.08);--stat-border:rgba(99,102,241,0.2);">
+                        <div class="stat-icon">📁</div>
+                        <div class="stat-header">Categories</div>
+                        <div class="stat-value" id="statCategories">0</div>
+                    </div>
+                    <div class="stat-card" style="--stat-color:var(--rose);--stat-dim:rgba(244,63,94,0.08);--stat-border:rgba(244,63,94,0.2);">
+                        <div class="stat-icon">♻️</div>
+                        <div class="stat-header">Duplicates</div>
+                        <div class="stat-value" id="statDuplicates">0</div>
+                    </div>
+                    <div class="stat-card" style="--stat-color:var(--amber);--stat-dim:rgba(245,158,11,0.08);--stat-border:rgba(245,158,11,0.2);">
+                        <div class="stat-icon">💾</div>
+                        <div class="stat-header">Space Saved</div>
+                        <div class="stat-value" id="statSpaceSaved" style="font-size:1.15rem;">0 B</div>
+                    </div>
+                    <div class="stat-card" style="--stat-color:var(--cyan);--stat-dim:rgba(34,211,238,0.08);--stat-border:rgba(34,211,238,0.2);">
+                        <div class="stat-icon">🔬</div>
+                        <div class="stat-header">Algorithm</div>
+                        <div class="stat-value" id="statAlgorithm" style="font-size:0.85rem;font-weight:700;padding-top:4px;">N/A</div>
+                    </div>
+                    <div class="stat-card" style="--stat-color:var(--purple);--stat-dim:rgba(168,85,247,0.08);--stat-border:rgba(168,85,247,0.2);">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-header">Process Time</div>
+                        <div class="stat-value" id="statTime" style="font-size:1rem;">0 ms</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── BEFORE / AFTER ── -->
+            <div class="card" id="section-before-after">
+                <div class="card-header">
+                    <div class="card-title">
+                        🔀 Before / After Comparison
+                    </div>
+                    <span class="badge badge-indigo">BFS Sort</span>
+                </div>
+                <div class="card-body">
+                    <div class="split-grid">
+                        <div>
+                            <div class="split-pane-header">
+                                <span>🗂️</span> <span>Before — Unorganized</span>
+                                <span class="badge badge-rose" style="margin-left:auto;">Messy</span>
+                            </div>
+                            <div class="tree-container" id="beforeList"></div>
+                        </div>
+                        <div>
+                            <div class="split-pane-header">
+                                <span>✅</span> <span>After — Organized by AI</span>
+                                <span class="badge badge-emerald" style="margin-left:auto;">Clean</span>
+                            </div>
+                            <div class="tree-container" id="afterList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── CHARTS ── -->
+            <div id="section-charts">
+                <div class="section-label">Algorithm Benchmarks & Analysis</div>
+                <div class="charts-grid">
+                    <div class="card chart-card">
+                        <div class="card-title">
+                            📊 6-Algorithm Sorting Benchmark (ms)
+                        </div>
+                        <div style="font-size:0.72rem;color:var(--text-faint);margin-top:-8px;">
+                            Comparison of O(n²), O(n log n) & O(nk) time complexities across 27 file nodes
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="algoChart"></canvas>
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:16px;">
+                        <div class="card chart-card" style="flex:1;">
+                            <div class="card-title">🍩 Category Distribution</div>
+                            <div class="chart-wrapper" style="height:160px;">
+                                <canvas id="categoryDonut"></canvas>
+                            </div>
+                        </div>
+                        <div class="card chart-card" style="flex:1;">
+                            <div class="card-title">🎯 Priority Breakdown</div>
+                            <div class="chart-wrapper" style="height:160px;">
+                                <canvas id="priorityChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── FOLDER TREE ── -->
+            <div class="card" id="section-tree">
+                <div class="card-header">
+                    <div class="card-title">🌳 Organized Folder Tree — AVL Balanced Structure</div>
+                    <span class="badge badge-emerald">O(log n)</span>
+                </div>
+                <div class="card-body">
+                    <div class="tree-container" style="height:240px;" id="organizedTree"></div>
+                </div>
+            </div>
+
+            <!-- ── FILE DATABASE ── -->
+            <div class="card" id="section-files">
+                <div class="card-header">
+                    <div class="card-title">📋 File Intelligence Database</div>
+                    <span class="badge badge-indigo">Heuristic Ranked</span>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Filename</th>
+                                <th>Priority</th>
+                                <th>Score</th>
+                                <th>Category</th>
+                                <th>Size</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fileTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ── DUPLICATES ── -->
+            <div class="card" id="section-duplicates">
+                <div class="card-header">
+                    <div class="card-title">♻️ MD5 Duplicate Detection — O(1) Hash Matching</div>
+                    <span class="badge badge-amber">Hash Table</span>
+                </div>
+                <div class="card-body" id="duplicatesPanel">
+                    <div style="text-align:center;padding:2rem;color:var(--text-faint);">
+                        ♻️ Waiting for scan results...
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── UNDO STACK ── -->
+            <div class="card" id="section-undo">
+                <div class="card-header">
+                    <div class="card-title">↩️ Undo Stack — Doubly Linked List Visualization</div>
+                    <button class="btn btn-sm" onclick="triggerUndo()" style="gap:4px;">
+                        <span>↩️</span> Undo Last
+                    </button>
+                </div>
+                <div class="card-body" id="undoStackPanel">
+                    <div style="text-align:center;padding:2rem;color:var(--text-faint);">
+                        📭 Undo stack empty.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── SYLLABUS ACCORDION ── -->
+            <div class="card" id="section-syllabus">
+                <div class="card-header">
+                    <div class="card-title">📖 Syllabus Mapping — JIS R25 CSE Modules</div>
+                    <span class="badge badge-indigo">Auto-Tagged</span>
+                </div>
+                <div id="syllabusAccordion"></div>
+            </div>
+
+            <!-- ── ETHICS PANEL ── -->
+            <div class="card" id="section-ethics">
+                <div class="card-header">
+                    <div class="card-title">⚖️ AI Ethics & Transparency Framework</div>
+                    <span class="badge badge-rose">CS202 Compliant</span>
+                </div>
+                <div class="card-body" id="ethicsPanel"></div>
+            </div>
+
+        </div><!-- /page-content -->
+    </div><!-- /main-wrapper -->
+</div><!-- /app-shell -->
+
+<!-- ════════════════════════════════════
+     DETAIL SLIDE-OUT PANEL
+     ════════════════════════════════════ -->
+<div class="slide-panel hidden" id="detailPanel">
+    <button class="close-btn" onclick="closeDetailPanel()">×</button>
+    <div id="detailBody" style="padding-top:24px;"></div>
+</div>
+
+<!-- ════════════════════════════════════
+     DOCUMENT PREVIEW MODAL
+     ════════════════════════════════════ -->
+<div class="preview-modal hidden" id="previewModal">
+    <div class="preview-container">
+        <div class="preview-header">
+            <div class="preview-title-wrapper">
+                <span class="preview-icon" id="previewIcon">📄</span>
+                <div>
+                    <div class="preview-title" id="previewTitle">Document Preview</div>
+                    <div class="preview-meta" id="previewMeta">AI-classified · Secure preview</div>
+                </div>
+            </div>
+            <div class="preview-actions">
+                <button class="btn btn-sm btn-emerald" id="previewDownloadBtn">⬇️ Download</button>
+                <button class="preview-close-btn" onclick="closePreviewModal()">×</button>
+            </div>
+        </div>
+        <div class="preview-content" id="previewContent">
+            <div style="text-align:center;">
+                <div class="spinner"></div>
+                <p style="margin-top:14px;color:var(--text-faint);font-size:0.82rem;">Loading preview...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════
+     PROCESSING OVERLAY
+     ════════════════════════════════════ -->
+<div class="processing-overlay hidden" id="loadingOverlay">
+    <div class="spinner"></div>
+    <p id="progressText" style="color:var(--text-secondary);font-size:0.85rem;font-weight:600;">Initializing BFS scanner...</p>
+    <div class="progress-bar-wrapper">
+        <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════
+     TOAST
+     ════════════════════════════════════ -->
+<div class="toast" id="toast">Toast notification</div>
+
+<!-- ════════════════════════════════════
+     AI ASSISTANT WIDGET
+     ════════════════════════════════════ -->
+<div class="ai-assistant-widget">
+    <!-- Chat Panel -->
+    <div class="ai-assistant-chat-panel" id="aiChatPanel">
+        <div class="ai-chat-header">
+            <div style="display:flex;align-items:center;gap:10px;">
+                <div class="ai-avatar">🧠</div>
+                <div>
+                    <div style="font-size:0.85rem;font-weight:700;color:var(--text-primary);">NeuroSort AI</div>
+                    <div style="display:flex;align-items:center;gap:5px;font-size:0.7rem;color:var(--emerald);">
+                        <div class="status-dot"></div>
+                        Online — Context-Aware
+                    </div>
+                </div>
+            </div>
+            <button class="ai-chat-close" onclick="toggleAIChat()">×</button>
+        </div>
+
+        <div class="ai-chat-messages" id="aiChatMessages">
+            <div class="ai-chat-message assistant">
+                👋 Hello! I'm your NeuroSort AI assistant. I can explain the AVL tree balancing, BFS scanning, MD5 hashing, sorting algorithms, or help you understand any result in your workspace. What would you like to explore?
+            </div>
+        </div>
+
+        <!-- Suggestion chips -->
+        <div class="ai-chat-suggestions" id="aiChipContainer">
+            <button class="ai-suggestion-chip" onclick="sendAISuggestion(this)">AVL Tree rotations</button>
+            <button class="ai-suggestion-chip" onclick="sendAISuggestion(this)">Quick Sort vs Merge Sort</button>
+            <button class="ai-suggestion-chip" onclick="sendAISuggestion(this)">MD5 hashing explained</button>
+            <button class="ai-suggestion-chip" onclick="sendAISuggestion(this)">Load Demo</button>
+            <button class="ai-suggestion-chip" onclick="sendAISuggestion(this)">How does BFS work?</button>
+        </div>
+
+        <div class="ai-chat-input-area">
+            <input type="text" id="aiChatInput" placeholder="Ask anything about NeuroSort AI..."
+                   onkeydown="if(event.key==='Enter') sendAIMessage()" />
+            <button class="ai-chat-send-btn" onclick="sendAIMessage()">➤</button>
+        </div>
+    </div>
+
+    <!-- Toggle Button -->
+    <button class="ai-assistant-btn" id="aiAssistantBtn" onclick="toggleAIChat()" title="NeuroSort AI Assistant">
+        🧠
+    </button>
+</div>
+
+<!-- ════════════════════════════════════
+     SCRIPTS
+     ════════════════════════════════════ -->
+<script src="/js/client_scanner.js"></script>
+<script src="/js/demo_data.js"></script>
+<script src="/js/renderer.js"></script>
+<script src="/js/charts.js"></script>
+<script src="/js/ai_assistant.js"></script>
+<script src="/js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+# NeuroSort AI — .gitignore
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.local
+dist/
+build/
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+*.swo
+neurosort.exe
+demo_organized/

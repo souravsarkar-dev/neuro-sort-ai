@@ -1,0 +1,1460 @@
+{
+  "project": "NeuroSort AI",
+  "version": "1.0.0",
+  "timestamp": "1780147957",
+  "statistics": {
+    "totalFiles": 26,
+    "totalSize": 1383844,
+    "categoriesCreated": 9,
+    "duplicatesFound": 0,
+    "spaceSaved": 0,
+    "studyFiles": 14,
+    "highPriority": 3,
+    "mediumPriority": 14,
+    "lowPriority": 9,
+    "rulesApplied": 26,
+    "processingTimeMs": 0.0118,
+    "sortAlgorithm": "Radix Sort"
+  },
+  "categories": [
+    {
+      "name": "Study_Hub",
+      "icon": "📚",
+      "count": 14
+    },
+    {
+      "name": "Documents",
+      "icon": "📄",
+      "count": 1
+    },
+    {
+      "name": "Images",
+      "icon": "🖼️",
+      "count": 3
+    },
+    {
+      "name": "Videos",
+      "icon": "🎬",
+      "count": 2
+    },
+    {
+      "name": "Music",
+      "icon": "🎵",
+      "count": 1
+    },
+    {
+      "name": "Code",
+      "icon": "💻",
+      "count": 2
+    },
+    {
+      "name": "Archives",
+      "icon": "📦",
+      "count": 1
+    },
+    {
+      "name": "Executables",
+      "icon": "⚙️",
+      "count": 1
+    },
+    {
+      "name": "Duplicates",
+      "icon": "♻️",
+      "count": 0
+    },
+    {
+      "name": "Others",
+      "icon": "📂",
+      "count": 1
+    }
+  ],
+  "sortBenchmark": [
+    {
+      "name": "Bubble Sort",
+      "comparisons": 260,
+      "swaps": 130,
+      "timeMs": 0.4923,
+      "complexity": "O(n²)",
+      "spaceComplexity": "O(1)",
+      "selected": false
+    },
+    {
+      "name": "Insertion Sort",
+      "comparisons": 130,
+      "swaps": 130,
+      "timeMs": 0.0472,
+      "complexity": "O(n²)",
+      "spaceComplexity": "O(1)",
+      "selected": false
+    },
+    {
+      "name": "Selection Sort",
+      "comparisons": 260,
+      "swaps": 52,
+      "timeMs": 0.2333,
+      "complexity": "O(n²)",
+      "spaceComplexity": "O(1)",
+      "selected": false
+    },
+    {
+      "name": "Quick Sort",
+      "comparisons": 78,
+      "swaps": 52,
+      "timeMs": 0.01888,
+      "complexity": "O(n log n)",
+      "spaceComplexity": "O(log n)",
+      "selected": false
+    },
+    {
+      "name": "Merge Sort",
+      "comparisons": 78,
+      "swaps": 104,
+      "timeMs": 0.0236,
+      "complexity": "O(n log n)",
+      "spaceComplexity": "O(n)",
+      "selected": false
+    },
+    {
+      "name": "Radix Sort",
+      "comparisons": 0,
+      "swaps": 52,
+      "timeMs": 0.0118,
+      "complexity": "O(nk)",
+      "spaceComplexity": "O(n+k)",
+      "selected": true
+    }
+  ],
+  "files": [
+    {
+      "id": 0,
+      "name": "AI_Notes_Module3.pdf",
+      "ext": "pdf",
+      "size": 7855,
+      "created": 1780083380.6131313,
+      "modified": 1780145652.7609527,
+      "path": "demo_messy_folder\\AI_Notes_Module3.pdf",
+      "content_keywords": "",
+      "category": "Study_Hub",
+      "subcategory": "Notes",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "7.67 KB",
+      "priorityScore": 56,
+      "heuristic": {
+        "keyword": 8,
+        "recency": 30,
+        "size": 8,
+        "extension": 10,
+        "total": 56,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "9c9f584381c7a2ea0e179db05a12d698",
+      "isDuplicate": false
+    },
+    {
+      "id": 1,
+      "name": "Assignment_Lab5.c",
+      "ext": "c",
+      "size": 11749,
+      "created": 1780083380.6181118,
+      "modified": 1780145652.7667377,
+      "path": "demo_messy_folder\\Assignment_Lab5.c",
+      "content_keywords": "",
+      "category": "Study_Hub",
+      "subcategory": "Assignments",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 2 (Assignment Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "11.47 KB",
+      "priorityScore": 53,
+      "heuristic": {
+        "keyword": 8,
+        "recency": 30,
+        "size": 8,
+        "extension": 7,
+        "total": 53,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "6d42e25ed15a748f32c07b3722c4a4ae",
+      "isDuplicate": false
+    },
+    {
+      "id": 2,
+      "name": "birthday_video.mp4",
+      "ext": "mp4",
+      "size": 51051,
+      "created": 1780083380.6945043,
+      "modified": 1780145652.891976,
+      "path": "demo_messy_folder\\birthday_video.mp4",
+      "content_keywords": "",
+      "category": "Videos",
+      "subcategory": "",
+      "priority": "Low",
+      "priority_val": 1,
+      "explanation": "Rule 11 (Video File): No rule explanation [Confidence: 92%]",
+      "confidence": 92,
+      "sizeFormatted": "49.85 KB",
+      "priorityScore": 41,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 3,
+        "total": 41,
+        "is_study": false
+      },
+      "is_study": false,
+      "hash": "456103664784d059a09c9c3c271f2206",
+      "isDuplicate": false
+    },
+    {
+      "id": 3,
+      "name": "config.json",
+      "ext": "json",
+      "size": 71037,
+      "created": 1780083380.745892,
+      "modified": 1780145652.9889686,
+      "path": "demo_messy_folder\\config.json",
+      "content_keywords": "",
+      "category": "Code",
+      "subcategory": "",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 14 (Database File): No rule explanation [Confidence: 82%]",
+      "confidence": 82,
+      "sizeFormatted": "69.37 KB",
+      "priorityScore": 41,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 3,
+        "total": 41,
+        "is_study": false
+      },
+      "is_study": false,
+      "hash": "a8ddc69279c0a2558fc4da6631f84723",
+      "isDuplicate": false
+    },
+    {
+      "id": 4,
+      "name": "course_material_dsa.pdf",
+      "ext": "pdf",
+      "size": 103061,
+      "created": 1780083380.856914,
+      "modified": 1780145653.1891985,
+      "path": "demo_messy_folder\\course_material_dsa.pdf",
+      "content_keywords": "",
+      "category": "Study_Hub",
+      "subcategory": "Notes",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "100.65 KB",
+      "priorityScore": 60,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 20,
+        "extension": 10,
+        "total": 60,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "f2e1b9f3a923a9ad0f3e3b3aeee6e7b7",
+      "isDuplicate": false
+    },
+    {
+      "id": 5,
+      "name": "database_schema.sql",
+      "ext": "sql",
+      "size": 67053,
+      "created": 1780083380.7353132,
+      "modified": 1780145652.9670787,
+      "path": "demo_messy_folder\\database_schema.sql",
+      "content_keywords": "",
+      "category": "Code",
+      "subcategory": "",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 14 (Database File): No rule explanation [Confidence: 82%]",
+      "confidence": 82,
+      "sizeFormatted": "65.48 KB",
+      "priorityScore": 41,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 3,
+        "total": 41,
+        "is_study": false
+      },
+      "is_study": false,
+      "hash": "f47ef3a7e3cc5952b7bb2740257f1f19",
+      "isDuplicate": false
+    },
+    {
+      "id": 6,
+      "name": "DSA_Final_Exam_2025.pdf",
+      "ext": "pdf",
+      "size": 3961,
+      "created": 1780083380.6121006,
+      "modified": 1780145652.7577317,
+      "path": "demo_messy_folder\\DSA_Final_Exam_2025.pdf",
+      "content_keywords": "",
+      "category": "Study_Hub",
+      "subcategory": "Exams",
+      "priority": "High",
+      "priority_val": 3,
+      "explanation": "Rule 1 (Exam Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "3.87 KB",
+      "priorityScore": 64,
+      "heuristic": {
+        "keyword": 16,
+        "recency": 30,
+        "size": 8,
+        "extension": 10,
+        "total": 64,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "a8763547c064cf9889d742630228c9cc",
+      "isDuplicate": false
+    },
+    {
+      "id": 7,
+      "name": "favorite_song.mp3",
+      "ext": "mp3",
+      "size": 59049,
+      "created": 1780083380.7142408,
+      "modified": 1780145652.928158,
+      "path": "demo_messy_folder\\favorite_song.mp3",
+      "content_keywords": "",
+      "category": "Music",
+      "subcategory": "",
+      "priority": "Low",
+      "priority_val": 1,
+      "explanation": "Rule 12 (Audio File): No rule explanation [Confidence: 92%]",
+      "confidence": 92,
+      "sizeFormatted": "57.67 KB",
+      "priorityScore": 41,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 3,
+        "total": 41,
+        "is_study": false
+      },
+      "is_study": false,
+      "hash": "5461c42d9209e3b508eb740a2e7790dc",
+      "isDuplicate": false
+    },
+    {
+      "id": 8,
+      "name": "installer.exe",
+      "ext": "exe",
+      "size": 79041,
+      "created": 1780083380.7695756,
+      "modified": 1780145653.033686,
+      "path": "demo_messy_folder\\installer.exe",
+      "content_keywords": "",
+      "category": "Executables",
+      "subcategory": "",
+      "priority": "Low",
+      "priority_val": 1,
+      "explanation": "Rule 16 (Executable): No rule explanation [Confidence: 85%]",
+      "confidence": 85,
+      "sizeFormatted": "77.19 KB",
+      "priorityScore": 41,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 3,
+        "total": 41,
+        "is_study": false
+      },
+      "is_study": false,
+      "hash": "085f7457ba504242c9dce02f9a891859",
+      "isDuplicate": false
+    },
+    {
+      "id": 9,
+      "name": "lecture_recording.mkv",
+      "ext": "mkv",
+      "size": 55057,
+      "created": 1780083380.7050328,
+      "modified": 1780145652.9084578,
+      "path": "demo_messy_folder\\lecture_recording.mkv",
+      "content_keywords": "",
+      "category": "Videos",
+      "subcategory": "",
+      "priority": "Low",
+      "priority_val": 1,
+      "explanation": "Rule 11 (Video File): No rule explanation [Confidence: 92%]",
+      "confidence": 92,
+      "sizeFormatted": "53.77 KB",
+      "priorityScore": 49,
+      "heuristic": {
+        "keyword": 8,
+        "recency": 30,
+        "size": 8,
+        "extension": 3,
+        "total": 49,
+        "is_study": false
+      },
+      "is_study": false,
+      "hash": "9393d9bfcefd497bec702db52ef26cbf",
+      "isDuplicate": false
+    },
+    {
+      "id": 10,
+      "name": "lecture_slides.pptx",
+      "ext": "pptx",
+      "size": 23453,
+      "created": 1780083380.6313517,
+      "modified": 1780145652.7981849,
+      "path": "demo_messy_folder\\lecture_slides.pptx",
+      "content_keywords": "",
+      "category": "Study_Hub",
+      "subcategory": "Notes",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "22.90 KB",
+      "priorityScore": 54,
+      "heuristic": {
+        "keyword": 8,
+        "recency": 30,
+        "size": 8,
+        "extension": 8,
+        "total": 54,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "9f6cd59199071cbd0a5ef91afabc3506",
+      "isDuplicate": false
+    },
+    {
+      "id": 11,
+      "name": "midterm_solutions.pdf",
+      "ext": "pdf",
+      "size": 31257,
+      "created": 1780083380.6444035,
+      "modified": 1780145652.8202944,
+      "path": "demo_messy_folder\\midterm_solutions.pdf",
+      "content_keywords": "",
+      "category": "Study_Hub",
+      "subcategory": "Exams",
+      "priority": "High",
+      "priority_val": 3,
+      "explanation": "Rule 1 (Exam Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "30.52 KB",
+      "priorityScore": 48,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 10,
+        "total": 48,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "527d7e2cb7de18fb9cac9d0967a39911",
+      "isDuplicate": false
+    },
+    {
+      "id": 12,
+      "name": "notes_chapter1.txt",
+      "ext": "txt",
+      "size": 87051,
+      "created": 1780083380.7964363,
+      "modified": 1780145653.0801976,
+      "path": "demo_messy_folder\\notes_chapter1.txt",
+      "content_keywords": "Demo file: notes_chapter1.txt\r\nCreated by NeuroSort AI Demo Mode\r\nThis simulates a real file for testing the organization engine.\r\nKeywords: notes_chapter1.txt\r\nContent block 0 for size variation.\r\nContent block 1 for size variation.\r\nContent block 2 for size variation.\r\nContent block 3 for size variation.\r\nContent block 4 for size variation.\r\nContent block 5 for size variation.\r\nContent block 6 for size variation.\r\nContent block 7 for size variation.\r\nContent block 8 for size variation.\r\nContent block 9 for size variation.\r\nContent block 10 for size variation.\r\nContent block 11 for size variation.\r\nContent block 12 for size variation.\r\nContent block 13 for size variation.\r\nContent block 14 for size variation.\r\nContent block 15 for size variation.\r\nContent block 16 for size variation.\r\nContent block 17 for size variation.\r\nContent block 18 for size variation.\r\nContent block 19 for size variation.\r\nContent block 20 for size variation.\r\nContent block 21 for size variation.\r\nContent block 22 for size variation.\r",
+      "category": "Study_Hub",
+      "subcategory": "Notes",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "85.01 KB",
+      "priorityScore": 52,
+      "heuristic": {
+        "keyword": 8,
+        "recency": 30,
+        "size": 8,
+        "extension": 6,
+        "total": 52,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "1177a3d204385a148997d23d4c460a42",
+      "isDuplicate": false
+    },
+    {
+      "id": 13,
+      "name": "notes_chapter2.txt",
+      "ext": "txt",
+      "size": 91051,
+      "created": 1780083380.8118775,
+      "modified": 1780145653.108736,
+      "path": "demo_messy_folder\\notes_chapter2.txt",
+      "content_keywords": "Demo file: notes_chapter2.txt\r\nCreated by NeuroSort AI Demo Mode\r\nThis simulates a real file for testing the organization engine.\r\nKeywords: notes_chapter2.txt\r\nContent block 0 for size variation.\r\nContent block 1 for size variation.\r\nContent block 2 for size variation.\r\nContent block 3 for size variation.\r\nContent block 4 for size variation.\r\nContent block 5 for size variation.\r\nContent block 6 for size variation.\r\nContent block 7 for size variation.\r\nContent block 8 for size variation.\r\nContent block 9 for size variation.\r\nContent block 10 for size variation.\r\nContent block 11 for size variation.\r\nContent block 12 for size variation.\r\nContent block 13 for size variation.\r\nContent block 14 for size variation.\r\nContent block 15 for size variation.\r\nContent block 16 for size variation.\r\nContent block 17 for size variation.\r\nContent block 18 for size variation.\r\nContent block 19 for size variation.\r\nContent block 20 for size variation.\r\nContent block 21 for size variation.\r\nContent block 22 for size variation.\r",
+      "category": "Study_Hub",
+      "subcategory": "Notes",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "88.92 KB",
+      "priorityScore": 52,
+      "heuristic": {
+        "keyword": 8,
+        "recency": 30,
+        "size": 8,
+        "extension": 6,
+        "total": 52,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "e8877c73c505fcbf36fb7d9548283e92",
+      "isDuplicate": false
+    },
+    {
+      "id": 14,
+      "name": "old_backup.zip",
+      "ext": "zip",
+      "size": 75043,
+      "created": 1780083380.7581356,
+      "modified": 1780145653.0109022,
+      "path": "demo_messy_folder\\old_backup.zip",
+      "content_keywords": "",
+      "category": "Archives",
+      "subcategory": "",
+      "priority": "Low",
+      "priority_val": 1,
+      "explanation": "Rule 15 (Archive File): No rule explanation [Confidence: 90%]",
+      "confidence": 90,
+      "sizeFormatted": "73.28 KB",
+      "priorityScore": 41,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 3,
+        "total": 41,
+        "is_study": false
+      },
+      "is_study": false,
+      "hash": "4d5b14cfa1abf5a1698b79de085d9edf",
+      "isDuplicate": false
+    },
+    {
+      "id": 15,
+      "name": "practical_file.c",
+      "ext": "c",
+      "size": 35147,
+      "created": 1780083380.6610851,
+      "modified": 1780145652.8321977,
+      "path": "demo_messy_folder\\practical_file.c",
+      "content_keywords": "",
+      "category": "Study_Hub",
+      "subcategory": "Assignments",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 2 (Assignment Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "34.32 KB",
+      "priorityScore": 45,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 7,
+        "total": 45,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "6b6c558b8d03226c67b232ff2b58e58b",
+      "isDuplicate": false
+    },
+    {
+      "id": 16,
+      "name": "project_code.py",
+      "ext": "py",
+      "size": 63045,
+      "created": 1780083380.7250743,
+      "modified": 1780145652.947136,
+      "path": "demo_messy_folder\\project_code.py",
+      "content_keywords": "",
+      "category": "Study_Hub",
+      "subcategory": "Assignments",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 2 (Assignment Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "61.57 KB",
+      "priorityScore": 53,
+      "heuristic": {
+        "keyword": 8,
+        "recency": 30,
+        "size": 8,
+        "extension": 7,
+        "total": 53,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "a8694fbb4c9ba7c3d3984598aa77af32",
+      "isDuplicate": false
+    },
+    {
+      "id": 17,
+      "name": "quiz_answers.txt",
+      "ext": "txt",
+      "size": 19547,
+      "created": 1780083380.6263506,
+      "modified": 1780145652.7864115,
+      "path": "demo_messy_folder\\quiz_answers.txt",
+      "content_keywords": "Demo file: quiz_answers.txt\r\nCreated by NeuroSort AI Demo Mode\r\nThis simulates a real file for testing the organization engine.\r\nKeywords: quiz_answers.txt\r\nContent block 0 for size variation.\r\nContent block 1 for size variation.\r\nContent block 2 for size variation.\r\nContent block 3 for size variation.\r\nContent block 4 for size variation.\r\nContent block 5 for size variation.\r\nContent block 6 for size variation.\r\nContent block 7 for size variation.\r\nContent block 8 for size variation.\r\nContent block 9 for size variation.\r\nContent block 10 for size variation.\r\nContent block 11 for size variation.\r\nContent block 12 for size variation.\r\nContent block 13 for size variation.\r\nContent block 14 for size variation.\r\nContent block 15 for size variation.\r\nContent block 16 for size variation.\r\nContent block 17 for size variation.\r\nContent block 18 for size variation.\r\nContent block 19 for size variation.\r\nContent block 20 for size variation.\r\nContent block 21 for size variation.\r\nContent block 22 for size variation.\r\nCon",
+      "category": "Study_Hub",
+      "subcategory": "Exams",
+      "priority": "High",
+      "priority_val": 3,
+      "explanation": "Rule 1 (Exam Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "19.09 KB",
+      "priorityScore": 52,
+      "heuristic": {
+        "keyword": 8,
+        "recency": 30,
+        "size": 8,
+        "extension": 6,
+        "total": 52,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "49045c61708db26112ba3710fa44cdc0",
+      "isDuplicate": false
+    },
+    {
+      "id": 18,
+      "name": "random_file.dat",
+      "ext": "dat",
+      "size": 83045,
+      "created": 1780083380.7826207,
+      "modified": 1780145653.0570412,
+      "path": "demo_messy_folder\\random_file.dat",
+      "content_keywords": "",
+      "category": "Others",
+      "subcategory": "",
+      "priority": "Low",
+      "priority_val": 1,
+      "explanation": "Rule 20 (Default): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "81.10 KB",
+      "priorityScore": 41,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 3,
+        "total": 41,
+        "is_study": false
+      },
+      "is_study": false,
+      "hash": "1db551227d7bee87cbe0c1d84ea745f0",
+      "isDuplicate": false
+    },
+    {
+      "id": 19,
+      "name": "resume_2025.pdf",
+      "ext": "pdf",
+      "size": 95045,
+      "created": 1780083380.8258574,
+      "modified": 1780145653.1349444,
+      "path": "demo_messy_folder\\resume_2025.pdf",
+      "content_keywords": "",
+      "category": "Documents",
+      "subcategory": "",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 4 (PDF Document): No rule explanation [Confidence: 85%]",
+      "confidence": 85,
+      "sizeFormatted": "92.82 KB",
+      "priorityScore": 48,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 10,
+        "total": 48,
+        "is_study": false
+      },
+      "is_study": false,
+      "hash": "a77ceda44ee222e25e41e44dcf81b8ca",
+      "isDuplicate": false
+    },
+    {
+      "id": 20,
+      "name": "screenshot_error.png",
+      "ext": "png",
+      "size": 47055,
+      "created": 1780083380.686584,
+      "modified": 1780145652.8754675,
+      "path": "demo_messy_folder\\screenshot_error.png",
+      "content_keywords": "",
+      "category": "Images",
+      "subcategory": "",
+      "priority": "Low",
+      "priority_val": 1,
+      "explanation": "Rule 9 (Image File): No rule explanation [Confidence: 90%]",
+      "confidence": 90,
+      "sizeFormatted": "45.95 KB",
+      "priorityScore": 41,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 3,
+        "total": 41,
+        "is_study": false
+      },
+      "is_study": false,
+      "hash": "38bda634ae6bbb497aeba93cdf8a0922",
+      "isDuplicate": false
+    },
+    {
+      "id": 21,
+      "name": "semester_project_report.docx",
+      "ext": "docx",
+      "size": 15671,
+      "created": 1780083380.6223538,
+      "modified": 1780145652.7763846,
+      "path": "demo_messy_folder\\semester_project_report.docx",
+      "content_keywords": "",
+      "category": "Study_Hub",
+      "subcategory": "Assignments",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 2 (Assignment Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "15.30 KB",
+      "priorityScore": 64,
+      "heuristic": {
+        "keyword": 16,
+        "recency": 30,
+        "size": 8,
+        "extension": 10,
+        "total": 64,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "6c8f813a5a63ba3bb1b3a6a9a91f5531",
+      "isDuplicate": false
+    },
+    {
+      "id": 22,
+      "name": "study_guide_algorithms.pdf",
+      "ext": "pdf",
+      "size": 27367,
+      "created": 1780083380.6378808,
+      "modified": 1780145652.8089144,
+      "path": "demo_messy_folder\\study_guide_algorithms.pdf",
+      "content_keywords": "",
+      "category": "Study_Hub",
+      "subcategory": "Notes",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "26.73 KB",
+      "priorityScore": 56,
+      "heuristic": {
+        "keyword": 8,
+        "recency": 30,
+        "size": 8,
+        "extension": 10,
+        "total": 56,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "716022e81e965d16851328d27cf8f2b1",
+      "isDuplicate": false
+    },
+    {
+      "id": 23,
+      "name": "tutorial_sorting.pdf",
+      "ext": "pdf",
+      "size": 99055,
+      "created": 1780083380.84024,
+      "modified": 1780145653.1618156,
+      "path": "demo_messy_folder\\tutorial_sorting.pdf",
+      "content_keywords": "",
+      "category": "Study_Hub",
+      "subcategory": "Notes",
+      "priority": "Medium",
+      "priority_val": 2,
+      "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]",
+      "confidence": 50,
+      "sizeFormatted": "96.73 KB",
+      "priorityScore": 48,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 10,
+        "total": 48,
+        "is_study": true
+      },
+      "is_study": true,
+      "hash": "30f076362e73b9e350e4c258aa889132",
+      "isDuplicate": false
+    },
+    {
+      "id": 24,
+      "name": "vacation_photo.jpg",
+      "ext": "jpg",
+      "size": 39051,
+      "created": 1780083380.6702404,
+      "modified": 1780145652.844381,
+      "path": "demo_messy_folder\\vacation_photo.jpg",
+      "content_keywords": "",
+      "category": "Images",
+      "subcategory": "",
+      "priority": "Low",
+      "priority_val": 1,
+      "explanation": "Rule 9 (Image File): No rule explanation [Confidence: 90%]",
+      "confidence": 90,
+      "sizeFormatted": "38.14 KB",
+      "priorityScore": 41,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 3,
+        "total": 41,
+        "is_study": false
+      },
+      "is_study": false,
+      "hash": "444075db163ce4175fc41144feb455e5",
+      "isDuplicate": false
+    },
+    {
+      "id": 25,
+      "name": "wallpaper_4k.png",
+      "ext": "png",
+      "size": 43047,
+      "created": 1780083380.6767495,
+      "modified": 1780145652.8589218,
+      "path": "demo_messy_folder\\wallpaper_4k.png",
+      "content_keywords": "",
+      "category": "Images",
+      "subcategory": "Wallpapers",
+      "priority": "Low",
+      "priority_val": 1,
+      "explanation": "Rule 8 (Wallpaper Detection): No rule explanation [Confidence: 100%]",
+      "confidence": 100,
+      "sizeFormatted": "42.04 KB",
+      "priorityScore": 41,
+      "heuristic": {
+        "keyword": 0,
+        "recency": 30,
+        "size": 8,
+        "extension": 3,
+        "total": 41,
+        "is_study": false
+      },
+      "is_study": false,
+      "hash": "bab5f0845f8dbfadae5af2fdf7fed3dd",
+      "isDuplicate": false
+    }
+  ],
+  "duplicates": [],
+  "folderStructure": {
+    "name": "Organized",
+    "type": "directory",
+    "children": [
+      {
+        "name": "Study_Hub",
+        "type": "directory",
+        "children": [
+          {
+            "name": "Notes",
+            "type": "directory",
+            "children": [
+              {
+                "name": "AI_Notes_Module3.pdf",
+                "type": "file",
+                "size": 7855,
+                "sizeFormatted": "7.67 KB",
+                "ext": "pdf",
+                "priority": "Medium",
+                "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]"
+              },
+              {
+                "name": "course_material_dsa.pdf",
+                "type": "file",
+                "size": 103061,
+                "sizeFormatted": "100.65 KB",
+                "ext": "pdf",
+                "priority": "Medium",
+                "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]"
+              },
+              {
+                "name": "lecture_slides.pptx",
+                "type": "file",
+                "size": 23453,
+                "sizeFormatted": "22.90 KB",
+                "ext": "pptx",
+                "priority": "Medium",
+                "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]"
+              },
+              {
+                "name": "notes_chapter1.txt",
+                "type": "file",
+                "size": 87051,
+                "sizeFormatted": "85.01 KB",
+                "ext": "txt",
+                "priority": "Medium",
+                "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]"
+              },
+              {
+                "name": "notes_chapter2.txt",
+                "type": "file",
+                "size": 91051,
+                "sizeFormatted": "88.92 KB",
+                "ext": "txt",
+                "priority": "Medium",
+                "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]"
+              },
+              {
+                "name": "study_guide_algorithms.pdf",
+                "type": "file",
+                "size": 27367,
+                "sizeFormatted": "26.73 KB",
+                "ext": "pdf",
+                "priority": "Medium",
+                "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]"
+              },
+              {
+                "name": "tutorial_sorting.pdf",
+                "type": "file",
+                "size": 99055,
+                "sizeFormatted": "96.73 KB",
+                "ext": "pdf",
+                "priority": "Medium",
+                "explanation": "Rule 3 (Notes Detection): No rule explanation [Confidence: 50%]"
+              }
+            ]
+          },
+          {
+            "name": "Assignments",
+            "type": "directory",
+            "children": [
+              {
+                "name": "Assignment_Lab5.c",
+                "type": "file",
+                "size": 11749,
+                "sizeFormatted": "11.47 KB",
+                "ext": "c",
+                "priority": "Medium",
+                "explanation": "Rule 2 (Assignment Detection): No rule explanation [Confidence: 50%]"
+              },
+              {
+                "name": "practical_file.c",
+                "type": "file",
+                "size": 35147,
+                "sizeFormatted": "34.32 KB",
+                "ext": "c",
+                "priority": "Medium",
+                "explanation": "Rule 2 (Assignment Detection): No rule explanation [Confidence: 50%]"
+              },
+              {
+                "name": "project_code.py",
+                "type": "file",
+                "size": 63045,
+                "sizeFormatted": "61.57 KB",
+                "ext": "py",
+                "priority": "Medium",
+                "explanation": "Rule 2 (Assignment Detection): No rule explanation [Confidence: 50%]"
+              },
+              {
+                "name": "semester_project_report.docx",
+                "type": "file",
+                "size": 15671,
+                "sizeFormatted": "15.30 KB",
+                "ext": "docx",
+                "priority": "Medium",
+                "explanation": "Rule 2 (Assignment Detection): No rule explanation [Confidence: 50%]"
+              }
+            ]
+          },
+          {
+            "name": "Exams",
+            "type": "directory",
+            "children": [
+              {
+                "name": "DSA_Final_Exam_2025.pdf",
+                "type": "file",
+                "size": 3961,
+                "sizeFormatted": "3.87 KB",
+                "ext": "pdf",
+                "priority": "High",
+                "explanation": "Rule 1 (Exam Detection): No rule explanation [Confidence: 50%]"
+              },
+              {
+                "name": "midterm_solutions.pdf",
+                "type": "file",
+                "size": 31257,
+                "sizeFormatted": "30.52 KB",
+                "ext": "pdf",
+                "priority": "High",
+                "explanation": "Rule 1 (Exam Detection): No rule explanation [Confidence: 50%]"
+              },
+              {
+                "name": "quiz_answers.txt",
+                "type": "file",
+                "size": 19547,
+                "sizeFormatted": "19.09 KB",
+                "ext": "txt",
+                "priority": "High",
+                "explanation": "Rule 1 (Exam Detection): No rule explanation [Confidence: 50%]"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Videos",
+        "type": "directory",
+        "children": [
+          {
+            "name": "birthday_video.mp4",
+            "type": "file",
+            "size": 51051,
+            "sizeFormatted": "49.85 KB",
+            "ext": "mp4",
+            "priority": "Low",
+            "explanation": "Rule 11 (Video File): No rule explanation [Confidence: 92%]"
+          },
+          {
+            "name": "lecture_recording.mkv",
+            "type": "file",
+            "size": 55057,
+            "sizeFormatted": "53.77 KB",
+            "ext": "mkv",
+            "priority": "Low",
+            "explanation": "Rule 11 (Video File): No rule explanation [Confidence: 92%]"
+          }
+        ]
+      },
+      {
+        "name": "Code",
+        "type": "directory",
+        "children": [
+          {
+            "name": "config.json",
+            "type": "file",
+            "size": 71037,
+            "sizeFormatted": "69.37 KB",
+            "ext": "json",
+            "priority": "Medium",
+            "explanation": "Rule 14 (Database File): No rule explanation [Confidence: 82%]"
+          },
+          {
+            "name": "database_schema.sql",
+            "type": "file",
+            "size": 67053,
+            "sizeFormatted": "65.48 KB",
+            "ext": "sql",
+            "priority": "Medium",
+            "explanation": "Rule 14 (Database File): No rule explanation [Confidence: 82%]"
+          }
+        ]
+      },
+      {
+        "name": "Music",
+        "type": "directory",
+        "children": [
+          {
+            "name": "favorite_song.mp3",
+            "type": "file",
+            "size": 59049,
+            "sizeFormatted": "57.67 KB",
+            "ext": "mp3",
+            "priority": "Low",
+            "explanation": "Rule 12 (Audio File): No rule explanation [Confidence: 92%]"
+          }
+        ]
+      },
+      {
+        "name": "Executables",
+        "type": "directory",
+        "children": [
+          {
+            "name": "installer.exe",
+            "type": "file",
+            "size": 79041,
+            "sizeFormatted": "77.19 KB",
+            "ext": "exe",
+            "priority": "Low",
+            "explanation": "Rule 16 (Executable): No rule explanation [Confidence: 85%]"
+          }
+        ]
+      },
+      {
+        "name": "Archives",
+        "type": "directory",
+        "children": [
+          {
+            "name": "old_backup.zip",
+            "type": "file",
+            "size": 75043,
+            "sizeFormatted": "73.28 KB",
+            "ext": "zip",
+            "priority": "Low",
+            "explanation": "Rule 15 (Archive File): No rule explanation [Confidence: 90%]"
+          }
+        ]
+      },
+      {
+        "name": "Others",
+        "type": "directory",
+        "children": [
+          {
+            "name": "random_file.dat",
+            "type": "file",
+            "size": 83045,
+            "sizeFormatted": "81.10 KB",
+            "ext": "dat",
+            "priority": "Low",
+            "explanation": "Rule 20 (Default): No rule explanation [Confidence: 50%]"
+          }
+        ]
+      },
+      {
+        "name": "Documents",
+        "type": "directory",
+        "children": [
+          {
+            "name": "resume_2025.pdf",
+            "type": "file",
+            "size": 95045,
+            "sizeFormatted": "92.82 KB",
+            "ext": "pdf",
+            "priority": "Medium",
+            "explanation": "Rule 4 (PDF Document): No rule explanation [Confidence: 85%]"
+          }
+        ]
+      },
+      {
+        "name": "Images",
+        "type": "directory",
+        "children": [
+          {
+            "name": "screenshot_error.png",
+            "type": "file",
+            "size": 47055,
+            "sizeFormatted": "45.95 KB",
+            "ext": "png",
+            "priority": "Low",
+            "explanation": "Rule 9 (Image File): No rule explanation [Confidence: 90%]"
+          },
+          {
+            "name": "vacation_photo.jpg",
+            "type": "file",
+            "size": 39051,
+            "sizeFormatted": "38.14 KB",
+            "ext": "jpg",
+            "priority": "Low",
+            "explanation": "Rule 9 (Image File): No rule explanation [Confidence: 90%]"
+          },
+          {
+            "name": "Wallpapers",
+            "type": "directory",
+            "children": [
+              {
+                "name": "wallpaper_4k.png",
+                "type": "file",
+                "size": 43047,
+                "sizeFormatted": "42.04 KB",
+                "ext": "png",
+                "priority": "Low",
+                "explanation": "Rule 8 (Wallpaper Detection): No rule explanation [Confidence: 100%]"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "undoStack": [
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\AI_Notes_Module3.pdf",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Notes\\AI_Notes_Module3.pdf",
+      "filename": "AI_Notes_Module3.pdf",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\Assignment_Lab5.c",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Assignments\\Assignment_Lab5.c",
+      "filename": "Assignment_Lab5.c",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\birthday_video.mp4",
+      "destination": "demo_messy_folder\\Organized\\Videos\\birthday_video.mp4",
+      "filename": "birthday_video.mp4",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\config.json",
+      "destination": "demo_messy_folder\\Organized\\Code\\config.json",
+      "filename": "config.json",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\course_material_dsa.pdf",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Notes\\course_material_dsa.pdf",
+      "filename": "course_material_dsa.pdf",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\database_schema.sql",
+      "destination": "demo_messy_folder\\Organized\\Code\\database_schema.sql",
+      "filename": "database_schema.sql",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\DSA_Final_Exam_2025.pdf",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Exams\\DSA_Final_Exam_2025.pdf",
+      "filename": "DSA_Final_Exam_2025.pdf",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\favorite_song.mp3",
+      "destination": "demo_messy_folder\\Organized\\Music\\favorite_song.mp3",
+      "filename": "favorite_song.mp3",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\installer.exe",
+      "destination": "demo_messy_folder\\Organized\\Executables\\installer.exe",
+      "filename": "installer.exe",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\lecture_recording.mkv",
+      "destination": "demo_messy_folder\\Organized\\Videos\\lecture_recording.mkv",
+      "filename": "lecture_recording.mkv",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\lecture_slides.pptx",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Notes\\lecture_slides.pptx",
+      "filename": "lecture_slides.pptx",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\midterm_solutions.pdf",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Exams\\midterm_solutions.pdf",
+      "filename": "midterm_solutions.pdf",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\notes_chapter1.txt",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Notes\\notes_chapter1.txt",
+      "filename": "notes_chapter1.txt",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\notes_chapter2.txt",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Notes\\notes_chapter2.txt",
+      "filename": "notes_chapter2.txt",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\old_backup.zip",
+      "destination": "demo_messy_folder\\Organized\\Archives\\old_backup.zip",
+      "filename": "old_backup.zip",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\practical_file.c",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Assignments\\practical_file.c",
+      "filename": "practical_file.c",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\project_code.py",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Assignments\\project_code.py",
+      "filename": "project_code.py",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\quiz_answers.txt",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Exams\\quiz_answers.txt",
+      "filename": "quiz_answers.txt",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\random_file.dat",
+      "destination": "demo_messy_folder\\Organized\\Others\\random_file.dat",
+      "filename": "random_file.dat",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\resume_2025.pdf",
+      "destination": "demo_messy_folder\\Organized\\Documents\\resume_2025.pdf",
+      "filename": "resume_2025.pdf",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\screenshot_error.png",
+      "destination": "demo_messy_folder\\Organized\\Images\\screenshot_error.png",
+      "filename": "screenshot_error.png",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\semester_project_report.docx",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Assignments\\semester_project_report.docx",
+      "filename": "semester_project_report.docx",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\study_guide_algorithms.pdf",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Notes\\study_guide_algorithms.pdf",
+      "filename": "study_guide_algorithms.pdf",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\tutorial_sorting.pdf",
+      "destination": "demo_messy_folder\\Organized\\Study_Hub\\Notes\\tutorial_sorting.pdf",
+      "filename": "tutorial_sorting.pdf",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\vacation_photo.jpg",
+      "destination": "demo_messy_folder\\Organized\\Images\\vacation_photo.jpg",
+      "filename": "vacation_photo.jpg",
+      "timestamp": 1780147957
+    },
+    {
+      "operation": "MOVE",
+      "source": "demo_messy_folder\\wallpaper_4k.png",
+      "destination": "demo_messy_folder\\Organized\\Images\\Wallpapers\\wallpaper_4k.png",
+      "filename": "wallpaper_4k.png",
+      "timestamp": 1780147957
+    }
+  ],
+  "syllabusMapping": [
+    {
+      "id": "DSA_M1",
+      "name": "Doubly Linked Lists",
+      "evidence": "Queue-driven file index uses DLL for O(1) insertions",
+      "course": "CS291 (DSA Lab)"
+    },
+    {
+      "id": "DSA_M2",
+      "name": "BFS Folder Traversal",
+      "evidence": "Scanner uses custom Queue BFS directory parsing in JS/Node",
+      "course": "CS291 (DSA Lab)"
+    },
+    {
+      "id": "DSA_M3",
+      "name": "BST & AVL Trees",
+      "evidence": "AVL Tree with balancing rotations (LL, RR, LR, RL) structures the folder hierarchy",
+      "course": "CS291 (DSA Lab)"
+    },
+    {
+      "id": "DSA_M4",
+      "name": "6 Sorting Algorithms",
+      "evidence": "Implements Bubble, Insertion, Selection, Quick, Merge, and Radix Sort with complexity benchmarks",
+      "course": "CS291 (DSA Lab)"
+    },
+    {
+      "id": "DSA_M5",
+      "name": "Hash Table O(1) Search",
+      "evidence": "MD5 Separate Chaining Hash Table performs instant duplicate file grouping",
+      "course": "CS291 (DSA Lab)"
+    },
+    {
+      "id": "AI_M1",
+      "name": "Agent Environment",
+      "evidence": "Intelligent agent reads filename/meta percepts and acts via folder movement actuators",
+      "course": "CS202 (Intro to AI)"
+    },
+    {
+      "id": "AI_M2",
+      "name": "Knowledge Representation",
+      "evidence": "18 predicate-logic rules model academic and asset category bounds",
+      "course": "CS202 (Intro to AI)"
+    },
+    {
+      "id": "AI_M3",
+      "name": "Heuristic Scoring",
+      "evidence": "Dynamic 4-factor scoring determines classification weight and urgency",
+      "course": "CS202 (Intro to AI)"
+    },
+    {
+      "id": "AI_M4",
+      "name": "Forward Chaining Engine",
+      "evidence": "Expert system sequentially checks conditions with resolution strategies",
+      "course": "CS292 (AI Lab)"
+    },
+    {
+      "id": "AI_M5",
+      "name": "Decision Tree Classifier",
+      "evidence": "Nested logical checks form category decision nodes",
+      "course": "CS202 (Intro to AI)"
+    },
+    {
+      "id": "AI_M6",
+      "name": "Explainable AI Facility",
+      "evidence": "Explains 'Why' each file is placed in a folder with matched words & confidence metrics",
+      "course": "CS292 (AI Lab)"
+    },
+    {
+      "id": "AI_M7",
+      "name": "AI Ethics & Privacy",
+      "evidence": "Dashboard verifies safety limits, checks biases, and audits data footprints",
+      "course": "CS202 (Intro to AI)"
+    }
+  ]
+}

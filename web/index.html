@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NeuroSort AI — Intelligent File Organization System with DSA & AI Rule Engine. Visual dashboard showing Before/After transformation.">
+    <title>NeuroSort AI — Intelligent File Organizer Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css?v=2">
+</head>
+<body>
+
+<!-- ═══════ HEADER ═══════ -->
+<header class="header">
+    <div class="header-inner">
+        <a class="logo" href="#">
+            <div class="logo-icon">🧠</div>
+            <span class="logo-text">NeuroSort AI</span>
+            <span class="logo-badge">v1.0</span>
+        </a>
+        <div class="header-actions">
+            <button class="btn btn-sm" onclick="switchInputTab('folder')">📂 Scan Folder</button>
+            <button class="btn btn-sm" onclick="switchInputTab('upload')">📄 Load Report</button>
+            <button class="btn btn-sm btn-primary" onclick="switchInputTab('demo'); loadDemoData(); showToast('⚡ Demo loaded!');">⚡ Demo</button>
+        </div>
+    </div>
+</header>
+
+<main class="main-content">
+
+    <!-- ═══════ HERO ═══════ -->
+    <section class="hero">
+        <h1>Intelligent File Organization</h1>
+        <p>Powered by DSA algorithms in C and AI Expert System with heuristic scoring — designed for students, built for everyone.</p>
+    </section>
+
+    <!-- ═══════ INPUT PANEL ═══════ -->
+    <div class="input-panel" id="inputPanel">
+        <div class="input-tabs">
+            <button class="input-tab active" data-tab="folder" onclick="switchInputTab('folder')">📂 Scan Folder</button>
+            <button class="input-tab" data-tab="upload" onclick="switchInputTab('upload')">📄 Load Report</button>
+            <button class="input-tab" data-tab="demo" onclick="switchInputTab('demo')">⚡ Demo</button>
+        </div>
+
+        <!-- Tab 1: Folder Path Input -->
+        <div class="input-content active" id="tab-folder">
+            <div class="folder-input-row">
+                <div class="folder-input-wrapper">
+                    <span class="folder-input-icon">📁</span>
+                    <input type="text" id="folderPath" class="folder-input" 
+                           placeholder="Enter folder path (e.g. C:\Users\Student\Downloads)" 
+                           spellcheck="false" autocomplete="off">
+                </div>
+                <button class="btn btn-primary" id="scanBtn" onclick="handleFolderScan()">
+                    🧠 Organize with AI
+                </button>
+            </div>
+            <div class="folder-input-hint">
+                <p>💡 <strong>How it works:</strong> Enter any messy folder path → NeuroSort AI scans it using BFS, classifies files with 25 expert rules, sorts with auto-selected algorithm, detects duplicates via hash table, and shows Before/After results.</p>
+                <p style="margin-top:0.5rem;">⚙️ <strong>CLI mode:</strong> <code>neurosort.exe "C:\Downloads"</code> → generates <code>report.json</code> → load it in the Report tab.</p>
+            </div>
+            <!-- Browser folder picker (drag & drop files) -->
+            <div class="drop-zone" id="dropZone">
+                <input type="file" id="folderPicker" webkitdirectory directory multiple style="display:none">
+                <span class="drop-icon">📂</span>
+                <span>Or <a href="#" onclick="document.getElementById('folderPicker').click(); return false;" style="color:var(--accent-blue);text-decoration:underline;">browse a folder</a> to scan files directly in the browser</span>
+            </div>
+        </div>
+
+        <!-- Tab 2: JSON Report Upload -->
+        <div class="input-content" id="tab-upload">
+            <div class="upload-zone" id="uploadZone">
+                <div class="upload-icon">📊</div>
+                <h3>Load Organization Report</h3>
+                <p>Drag & drop <code>report.json</code> from the C engine output, or click to browse</p>
+                <input type="file" id="reportFile" accept=".json" style="display:none">
+            </div>
+        </div>
+
+        <!-- Tab 3: Demo Mode -->
+        <div class="input-content" id="tab-demo">
+            <div class="demo-panel">
+                <div class="demo-icon">⚡</div>
+                <h3>Demo Mode</h3>
+                <p>Experience NeuroSort AI with 26 sample files — exam papers, notes, images, videos, code, and more. See how the AI classifies, prioritizes, and organizes everything.</p>
+                <button class="btn btn-primary" style="margin-top:1rem;font-size:1rem;padding:12px 32px;" onclick="loadDemoData(); showToast('⚡ Demo loaded with 26 sample files!');">
+                    🚀 Launch Demo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ STATISTICS GRID ═══════ -->
+    <div class="stats-grid" id="statsGrid"></div>
+
+    <!-- ═══════ CHARTS ROW ═══════ -->
+    <div class="charts-grid fade-in">
+        <div class="chart-wrapper">
+            <div class="chart-title">📊 Category Distribution</div>
+            <div id="categoryChart"></div>
+        </div>
+        <div class="chart-wrapper">
+            <div class="chart-title">🎯 Priority Distribution</div>
+            <div id="priorityChart"></div>
+        </div>
+    </div>
+
+    <!-- ═══════ BEFORE / AFTER ═══════ -->
+    <div class="panel fade-in">
+        <div class="panel-header">
+            <div class="panel-title">🔄 Before / After Transformation</div>
+        </div>
+        <div class="panel-body">
+            <div class="comparison-grid">
+                <div class="comparison-side before">
+                    <div class="comparison-header">🔴 BEFORE — Messy Folder</div>
+                    <div class="file-tree" id="beforeView"></div>
+                </div>
+                <div class="comparison-side after">
+                    <div class="comparison-header">🟢 AFTER — Organized Structure</div>
+                    <div class="file-tree" id="afterView"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ SORTING BENCHMARK ═══════ -->
+    <div class="panel fade-in">
+        <div class="panel-header">
+            <div class="panel-title">⚡ Sorting Algorithm Comparison (CS291 Module 4)</div>
+        </div>
+        <div class="panel-body">
+            <table class="sort-table">
+                <thead>
+                    <tr>
+                        <th>Algorithm</th>
+                        <th>Time Complexity</th>
+                        <th>Space</th>
+                        <th>Comparisons</th>
+                        <th>Swaps</th>
+                        <th>Actual Time</th>
+                    </tr>
+                </thead>
+                <tbody id="sortBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ═══════ FILE TABLE ═══════ -->
+    <div class="panel fade-in">
+        <div class="panel-header">
+            <div class="panel-title">📋 Classified Files</div>
+        </div>
+        <div class="panel-body">
+            <div class="file-scroll">
+                <table class="file-table">
+                    <thead>
+                        <tr>
+                            <th>Filename</th>
+                            <th>Size</th>
+                            <th>Ext</th>
+                            <th>Category</th>
+                            <th>Priority</th>
+                            <th>Score</th>
+                            <th>Tags</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fileBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ AI AGENT ARCHITECTURE ═══════ -->
+    <div class="panel fade-in">
+        <div class="panel-header">
+            <div class="panel-title">🤖 AI Agent Architecture (CS202 Module 1)</div>
+        </div>
+        <div class="panel-body">
+            <div class="agent-diagram">
+                <div class="agent-block">
+                    <div class="agent-block-title">Percepts</div>
+                    <div class="agent-block-content">File name<br>Extension<br>Size (bytes)<br>Content keywords<br>Timestamps<br>Hash value</div>
+                </div>
+                <div class="agent-block">
+                    <div class="agent-block-title">Knowledge Base</div>
+                    <div class="agent-block-content">25 Expert Rules<br>Propositional Logic<br>Predicate Logic<br>Forward Chaining<br>Heuristic Function<br>Decision Tree</div>
+                </div>
+                <div class="agent-block">
+                    <div class="agent-block-title">Actuators</div>
+                    <div class="agent-block-content">Classify file<br>Assign priority<br>Move to category<br>Detect duplicates<br>Create folders<br>Generate report</div>
+                </div>
+                <div class="agent-block">
+                    <div class="agent-block-title">Performance</div>
+                    <div class="agent-block-content">Organization score<br>Time saved<br>Space recovered<br>Rules accuracy<br>Classification F1<br>User satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ ML PIPELINE ═══════ -->
+    <div class="panel fade-in">
+        <div class="panel-header">
+            <div class="panel-title">🔬 ML Classification Pipeline (CS202 Module 5)</div>
+        </div>
+        <div class="panel-body">
+            <div class="pipeline">
+                <div class="pipeline-step">
+                    <div class="pipeline-step-icon">📂</div>
+                    <div class="pipeline-step-title">Data Collection</div>
+                    <div class="pipeline-step-desc">BFS scan directory</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <div class="pipeline-step-icon">🔍</div>
+                    <div class="pipeline-step-title">Feature Extraction</div>
+                    <div class="pipeline-step-desc">Name, ext, size, date</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <div class="pipeline-step-icon">🧠</div>
+                    <div class="pipeline-step-title">Classification</div>
+                    <div class="pipeline-step-desc">Expert rules + heuristics</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <div class="pipeline-step-icon">⚡</div>
+                    <div class="pipeline-step-title">Sorting</div>
+                    <div class="pipeline-step-desc">Auto-select algorithm</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <div class="pipeline-step-icon">✅</div>
+                    <div class="pipeline-step-title">Action</div>
+                    <div class="pipeline-step-desc">Organize & report</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ EXPERT SYSTEM EXPLANATION LOG ═══════ -->
+    <div class="panel fade-in">
+        <div class="panel-header">
+            <div class="panel-title">📝 Expert System Explanation Log (CS202 Module 4)</div>
+        </div>
+        <div class="panel-body">
+            <div class="rule-log" id="ruleLog"></div>
+        </div>
+    </div>
+
+    <!-- ═══════ AI ETHICS ═══════ -->
+    <div class="panel fade-in">
+        <div class="panel-header">
+            <div class="panel-title">⚖️ AI Ethics Panel (CS202 Module 6)</div>
+        </div>
+        <div class="panel-body">
+            <div class="ethics-grid">
+                <div class="ethics-card">
+                    <div class="ethics-icon">🔒</div>
+                    <div class="ethics-title">Privacy First</div>
+                    <div class="ethics-desc">All file scanning happens locally on your machine. No files are uploaded to any server. Your data stays yours.</div>
+                </div>
+                <div class="ethics-card">
+                    <div class="ethics-icon">⚖️</div>
+                    <div class="ethics-title">Fairness</div>
+                    <div class="ethics-desc">All file types are treated equally by the classification engine. Rules are transparent and explainable.</div>
+                </div>
+                <div class="ethics-card">
+                    <div class="ethics-icon">🛡️</div>
+                    <div class="ethics-title">Bias Awareness</div>
+                    <div class="ethics-desc">If AI misclassifies files, the explanation facility shows why, enabling manual correction. No hidden decisions.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ DSA CONCEPTS USED ═══════ -->
+    <div class="panel fade-in">
+        <div class="panel-header">
+            <div class="panel-title">📚 DSA & AI Concepts Mapping (Syllabus Coverage)</div>
+        </div>
+        <div class="panel-body">
+            <table class="sort-table">
+                <thead>
+                    <tr><th>Module</th><th>Concept</th><th>Application in NeuroSort</th><th>Course</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Module 1</td><td>Arrays & Linked Lists</td><td>File metadata storage, doubly linked list for file queue</td><td>CS291</td></tr>
+                    <tr><td>Module 2</td><td>Stacks & Queues</td><td>Undo stack (linked list), BFS queue for directory traversal</td><td>CS291</td></tr>
+                    <tr><td>Module 3</td><td>BST & AVL Trees</td><td>Category indexing, fast filename search, balanced real-time index</td><td>CS291</td></tr>
+                    <tr><td>Module 4</td><td>6 Sorting Algorithms</td><td>Multi-key file sorting with auto-selection based on N</td><td>CS291</td></tr>
+                    <tr><td>Module 5</td><td>Searching & Hashing</td><td>Linear/Binary/Interpolation search, hash table for duplicates</td><td>CS291</td></tr>
+                    <tr><td>AI Module 1</td><td>Agent Architecture</td><td>Percepts, actuators, environment, performance measure</td><td>CS202</td></tr>
+                    <tr><td>AI Module 2</td><td>Knowledge Representation</td><td>25 expert rules, propositional & predicate logic, forward chaining</td><td>CS202</td></tr>
+                    <tr><td>AI Module 3</td><td>Heuristic Search</td><td>4-factor heuristic scoring function for priority</td><td>CS202</td></tr>
+                    <tr><td>AI Module 4</td><td>Expert System</td><td>KB + inference engine + explanation facility</td><td>CS292</td></tr>
+                    <tr><td>AI Module 5</td><td>Decision Tree</td><td>Rule-based decision tree classifier for file types</td><td>CS202</td></tr>
+                    <tr><td>AI Module 6</td><td>AI Ethics</td><td>Privacy, fairness, bias awareness panel</td><td>CS202</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+    <p>NeuroSort AI v1.0 — Intelligent File Organization System</p>
+    <p>CS291 (DSA Lab) + CS202 (Intro to AI) + CS292 (AI Lab) | JIS College of Engineering, Kalyani</p>
+    <p style="margin-top:0.5rem;color:var(--text-muted);">Built with C (Core Engine) + Prolog (Knowledge Base) + HTML/CSS/JS (Dashboard)</p>
+</footer>
+
+<script src="dashboard.js?v=2"></script>
+</body>
+</html>
